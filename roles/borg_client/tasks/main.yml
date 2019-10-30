@@ -2,4 +2,4 @@
 - name: Install borg
   dnf:
     name: borgbackup
-    status: latest
+    state: latest
