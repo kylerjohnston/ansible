@@ -1,0 +1,14 @@
+---
+# This playbook provisions my personal laptop.
+
+- hosts: personal_laptop
+  roles:
+    - aws
+    - borg_client
+    - common
+    - gnucash
+    - graphical
+    - latex
+    - scheme
+    - spotify
+    - steam

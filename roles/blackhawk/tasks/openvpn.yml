@@ -1,0 +1,8 @@
+---
+- name: Install OpenVPN
+  dnf:
+    name:
+      - openvpn
+      - NetworkManager-openvpn
+      - NetworkManager-openvpn-gnome
+    state: latest

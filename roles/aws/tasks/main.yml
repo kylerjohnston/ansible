@@ -1,0 +1,7 @@
+---
+- name: Install AWS CLI tools and boto3
+  dnf:
+    name:
+      - awscli
+      - python3-boto3
+    state: latest

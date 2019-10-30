@@ -1,0 +1,7 @@
+---
+- name: Install guile
+  dnf:
+    name:
+      - guile
+      - guile22
+    state: latest

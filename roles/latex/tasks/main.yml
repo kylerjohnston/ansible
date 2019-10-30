@@ -1,0 +1,15 @@
+---
+- name: Install Texlive and packages
+  dnf:
+    name:
+      - texlive-scheme-basic
+      - texlive-collection-fontsrecommended
+      - texlive-fira
+      - texlive-fontawesome
+      - texlive-moderncv
+      - texlive-pdftex
+    state: latest
+- name: Install pandoc
+  dnf:
+    name: pandoc
+    state: latest

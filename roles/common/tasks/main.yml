@@ -1,0 +1,18 @@
+---
+- name: Install common packages
+  dnf:
+    name:
+      - bash
+      - curl
+      - fuse
+      - git
+      - grep
+      - mtr
+      - rsync
+      - ruby
+      - stow
+      - the_silver_searcher
+      - tmux
+      - vim-common
+      - enhanced-vim
+    state: latest

@@ -1,0 +1,43 @@
+#+TITLE: Ansible planning
+* Packages
+** Common
+bash.x86_64
+curl
+fuse.x86_64
+git
+grep
+mtr.x86_64
+python3-pip.noarch
+rsync.x86_64
+ruby
+stow.noarch
+the_silver_searcher.x86_64
+tmux.x86_64
+vim-common.x86_64
+vim-enhanced.x86_64
+** AWS
+awscli
+python3-botocore.noarch
+** Gnucash
+gnucash.x86_64
+sqlite.x86_64
+** Graphical
+** LaTeX
+** OpenVPN
+** Scheme
+guile.x86_64
+guile22.x86_64
+** Spotify
+snapd
+snap install spotify
+
+** Steam
+rpmfusion-nonfree
+steam
+
+* Other things to configure?
+** TODO WiFi
+** TODO Printer?
+** TODO Gnucash reports
+** TODO VPN config for work
+** TODO Borg
