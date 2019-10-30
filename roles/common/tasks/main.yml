@@ -14,5 +14,5 @@
       - the_silver_searcher
       - tmux
       - vim-common
-      - enhanced-vim
+      - vim-enhanced
     state: latest
