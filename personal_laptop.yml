@@ -1,7 +1,7 @@
 ---
 # This playbook provisions my personal laptop.
 
-- hosts: personal_laptop
+- hosts: localhost
   roles:
     - aws
     - borg_client
