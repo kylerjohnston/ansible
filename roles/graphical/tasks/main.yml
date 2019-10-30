@@ -1,7 +1,7 @@
 ---
 - name: Install GNOME
   dnf:
-    name: '@GNOME DesktopEnvironment'
+    name: '@GNOME Desktop Environment'
     state: latest
 - name: Install fonts
   dnf:
