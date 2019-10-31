@@ -7,7 +7,7 @@
     state: latest
 
 - name: Create AWS CLI config
-  copy:
+  template:
     src: aws_config.j2
     dest: /home/{{ username }}/.aws/config
     owner: "{{ username }}"
