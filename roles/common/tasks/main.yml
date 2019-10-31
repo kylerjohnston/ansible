@@ -10,9 +10,14 @@
       - mtr
       - rsync
       - ruby
-      - stow
       - the_silver_searcher
       - tmux
       - vim-common
       - vim-enhanced
     state: latest
+
+- name: Create {{ username }} user
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    state: present

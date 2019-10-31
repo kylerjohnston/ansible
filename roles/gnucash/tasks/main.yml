@@ -9,6 +9,6 @@
 - name: Copy Gnucash stylesheets
   copy:
     src: saved-reports-2.8
-    dest: /home/{{ home_user }}/.local/share/gnucash/saved-reports-2.8
-    owner: "{{ home_user }}"
+    dest: /home/{{ username }}/.local/share/gnucash/saved-reports-2.8
+    owner: "{{ username }}"
     mode: 664

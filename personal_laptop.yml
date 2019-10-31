@@ -2,6 +2,8 @@
 # This playbook provisions my personal laptop.
 
 - hosts: localhost
+  vars:
+    - aws_profile: home
   roles:
     - aws
     - borg_client

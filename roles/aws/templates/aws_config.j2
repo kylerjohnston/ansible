@@ -1,0 +1,9 @@
+{% if aws_profile == "home" %}
+  [descartes-s3-uploader]
+  region = us-east-1
+  output = json
+
+  [muumus-uploader]
+  region = us-east-1
+  output = json
+{% endif %}

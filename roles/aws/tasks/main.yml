@@ -5,3 +5,12 @@
       - awscli
       - python3-boto3
     state: latest
+
+- name: Create AWS CLI config
+  copy:
+    src: aws_config
+    dest: /home/{{ username }}/.aws/config
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 600
+    backup: yes
