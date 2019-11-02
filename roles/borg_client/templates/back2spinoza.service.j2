@@ -1,0 +1,9 @@
+[Unit]
+Description=Back up home directory to remote Borg repository
+
+[Service]
+Type=forking
+ExecStart=/home/{{ username }}/.local/bin/back2spinoza.sh {{ borg_share }}/{{ ansible_hostname }}
+
+[Install]
+WantedBy=default.target

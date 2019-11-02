@@ -20,3 +20,27 @@
     group: "{{ username }}"
     mode: 755
     force: no
+
+- name: Create ~/.config/systemd/user
+  file:
+    path: /home/{{ username }}/.config/systemd/user
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 775
+
+- name: Copy back2spinoza.service
+  template:
+    src: back2spinoza.service.j2
+    dest: /home/{{ username }}/.config/systemd/user/back2spinoza.service
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 664
+
+- name: Create multi-user.target.wants directory
+  file:
+    path: /home/{{ username }}/.config/systemd/user/multi-user.target.wants
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 775
