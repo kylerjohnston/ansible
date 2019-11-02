@@ -3,3 +3,20 @@
   dnf:
     name: borgbackup
     state: latest
+
+- name: Create ~/.local/bin if it does not exist
+  file:
+    path: /home/{{ username }}/.local/bin
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 775
+
+- name: Copy back2spinoza.sh script
+  copy:
+    src: back2spinoza.sh
+    dest: /home/{{ username }}/.local/bin/back2spinoza.sh
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 755
+    force: no
