@@ -1,0 +1,50 @@
+---
+- name: Create {{ username }} user
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    state: present
+
+- name: Create ~/tmp directory
+  file:
+    path: /home/{{ username }}/tmp
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: Create .bash_logout
+  copy:
+    src: bash_logout
+    dest: /home/{{ username }}/.bash_logout
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: yes
+
+- name: Create .bash_profile
+  copy:
+    src: bash_profile
+    dest: /home/{{ username }}/.bash_profile
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: yes
+
+- name: Create .bashrc
+  template:
+    src: bashrc.j2
+    dest: /home/{{ username }}/.bashrc
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: yes
+
+- name: Create .inputrc
+  copy:
+    src: inputrc
+    dest: /home/{{ username }}/.inputrc
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: yes
