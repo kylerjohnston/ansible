@@ -1,10 +1,4 @@
 ---
-- name: Create {{ username }} user
-  user:
-    name: "{{ username }}"
-    shell: /bin/bash
-    state: present
-
 - name: Create ~/tmp directory
   file:
     path: /home/{{ username }}/tmp

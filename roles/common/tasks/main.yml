@@ -15,5 +15,11 @@
       - vim-enhanced
     state: latest
 
-  - name: Bash configuration
-    import_tasks: bash_configuration.yml
+- name: Create {{ username }} user
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    state: present
+
+- name: Bash configuration
+  import_tasks: bash_configuration.yml
