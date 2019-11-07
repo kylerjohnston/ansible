@@ -37,10 +37,18 @@
     group: "{{ username }}"
     mode: 664
 
-- name: Create multi-user.target.wants directory
-  file:
-    path: /home/{{ username }}/.config/systemd/user/multi-user.target.wants
+- name: Copy back2spinoza.timer
+  copy:
+    src: back2spinoza.timer
+    dest: /home/{{ username }}/.config/systemd/user/back2spinoza.timer
     owner: "{{ username }}"
     group: "{{ username }}"
-    state: directory
-    mode: 775
+    mode: 664
+
+- name: Enable back2spinoza.timer
+  become: yes
+  become_user: "{{ username }}"
+  systemd:
+    name: back2spinoza.timer
+    enabled: yes
+    state: started
