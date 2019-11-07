@@ -3,7 +3,8 @@
 
 - hosts: localhost
   vars:
-    - aws_profile: home
+    - profile: home
+
   roles:
     - aws
     - borg_client

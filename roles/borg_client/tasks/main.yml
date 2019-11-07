@@ -10,7 +10,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: directory
-    mode: 775
+    mode: 0775
 
 - name: Copy back2spinoza.sh script
   copy:
@@ -18,7 +18,7 @@
     dest: /home/{{ username }}/.local/bin/back2spinoza.sh
     owner: "{{ username }}"
     group: "{{ username }}"
-    mode: 755
+    mode: 0755
     force: no
 
 - name: Create ~/.config/systemd/user
@@ -27,7 +27,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: directory
-    mode: 775
+    mode: 0775
 
 - name: Copy back2spinoza.service
   template:
@@ -35,7 +35,7 @@
     dest: /home/{{ username }}/.config/systemd/user/back2spinoza.service
     owner: "{{ username }}"
     group: "{{ username }}"
-    mode: 664
+    mode: 0664
 
 - name: Copy back2spinoza.timer
   copy:
@@ -43,7 +43,7 @@
     dest: /home/{{ username }}/.config/systemd/user/back2spinoza.timer
     owner: "{{ username }}"
     group: "{{ username }}"
-    mode: 664
+    mode: 0664
 
 - name: Enable back2spinoza.timer
   become: yes

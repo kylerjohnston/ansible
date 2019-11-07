@@ -12,6 +12,6 @@
     dest: /home/{{ username }}/.aws/config
     owner: "{{ username }}"
     group: "{{ username }}"
-    mode: 600
+    mode: 0600
     backup: yes
     force: no
