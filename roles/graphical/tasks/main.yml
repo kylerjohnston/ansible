@@ -1,41 +1,37 @@
 ---
-- name: Install GNOME
-  dnf:
-    name: '@GNOME Desktop Environment'
-    state: latest
-- name: Install fonts
-  dnf:
-    name:
-      - adobe-source-code-pro-fonts
-      - adobe-source-sans-pro-fonts
-      - fontawesome-fonts
-      - google-roboto-fonts
-    state: latest
-- name: Install emacs
-  dnf:
-    name: emacs
-    state: latest
+- name: Check if RPM Fusion is installed
+  stat:
+    path: /etc/yum.repos.d/rpmfusion-free.repo
+  register: rpmfusion
+
 - name: Install RPM Fusion free
   dnf:
     name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_current }}.noarch.rpm
     state: present
-- name: Install ffmpeg
-  dnf:
-    name: ffmpeg
-    state: latest
-- name: Install Firefox
-  dnf:
-    name: firefox
-    state: latest
-- name: Install the GIMP
-  dnf:
-    name: gimp
-    state: latest
+  when: rpmfusion.stat.exists == false
+
+- name: Check if Google Chrome repo is installed
+  stat:
+    path: /etc/yum.repos.d/google-chrome.repo
+  register: google-chrome
+
 - name: Install Google Chrome repo
   dnf:
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
-- name: Install Google Chrome
+  when: google-chrome.stat.exists = false
+
+- name: Install graphical packages
   dnf:
-    name: google-chrome-stable
+    name:
+      - '@GNOME Desktop Environment'
+      - adobe-source-code-pro-fonts
+      - adobe-source-sans-pro-fonts
+      - fontawesome-fonts
+      - google-roboto-fonts
+      - emacs
+      - ffmpeg
+      - firefox
+      - gimp
+      - google-chrome-stable
     state: latest
