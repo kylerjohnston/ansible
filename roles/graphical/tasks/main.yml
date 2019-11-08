@@ -35,3 +35,6 @@
       - gimp
       - google-chrome-stable
     state: latest
+
+- name: Configure emacs
+  import_tasks: emacs.yml

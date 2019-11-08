@@ -1,0 +1,37 @@
+---
+- name: Install doom
+  git:
+    repo: ssh://git@github.com:kylerjohnston/doom-emacs.git
+    dest: /home/{{ username }}/.emacs.d
+
+- name: Create ~/.doom.d
+  file:
+    path: /home/{{ username }}/.doom.d
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775
+
+- name: ~/.doom.d/config.el
+  copy:
+    src: config.el
+    dest: /home/{{ username }}/.doom.d/config.el
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: ~/.doom.d/init.el
+  copy:
+    src: init.el
+    dest: /home/{{ username }}/.doom.d/init.el
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: ~/.doom.d/packages.el
+  copy:
+    src: packages.el
+    dest: /home/{{ username }}/.doom.d/packages.el
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
