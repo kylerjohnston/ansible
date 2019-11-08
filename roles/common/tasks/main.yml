@@ -23,3 +23,12 @@
 
 - name: Bash configuration
   import_tasks: bash_configuration.yml
+
+- name: vim configuration
+  copy:
+    src: vimrc
+    dest: /home/{{ username }}/.vimrc
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    force: yes
+    mode: 0664
