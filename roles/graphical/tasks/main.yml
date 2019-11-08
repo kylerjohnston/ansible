@@ -19,7 +19,7 @@
   dnf:
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
-  when: google-chrome.stat.exists = false
+  when: google-chrome.stat.exists == false
 
 - name: Install graphical packages
   dnf:
