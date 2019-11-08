@@ -13,13 +13,13 @@
 - name: Check if Google Chrome repo is installed
   stat:
     path: /etc/yum.repos.d/google-chrome.repo
-  register: google-chrome
+  register: googlechrome
 
 - name: Install Google Chrome repo
   dnf:
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
-  when: google-chrome.stat.exists == false
+  when: googlechrome.stat.exists == false
 
 - name: Install graphical packages
   dnf:
