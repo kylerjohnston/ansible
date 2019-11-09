@@ -32,3 +32,12 @@
     group: "{{ username }}"
     force: yes
     mode: 0664
+
+- name: Create local systemd directory
+  file:
+    path: /home/{{ username }}/.config/systemd/user
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775
+    recurse: yes

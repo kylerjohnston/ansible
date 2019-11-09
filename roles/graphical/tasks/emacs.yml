@@ -14,7 +14,7 @@
     group: "{{ username }}"
     mode: 0775
 
-- name: ~/.doom.d/config.el
+- name: Create ~/.doom.d/config.el
   copy:
     src: config.el
     dest: /home/{{ username }}/.doom.d/config.el
@@ -22,7 +22,7 @@
     group: "{{ username }}"
     mode: 0664
 
-- name: ~/.doom.d/init.el
+- name: Create ~/.doom.d/init.el
   copy:
     src: init.el
     dest: /home/{{ username }}/.doom.d/init.el
@@ -30,10 +30,45 @@
     group: "{{ username }}"
     mode: 0664
 
-- name: ~/.doom.d/packages.el
+- name: Create ~/.doom.d/packages.el
   copy:
     src: packages.el
     dest: /home/{{ username }}/.doom.d/packages.el
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
+
+- name: Create ~/.local/share/applications
+  file:
+    path: /home/{{ username }}/.local/share/applications
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    recurse: yes
+    mode: 0700
+
+- name: Create ~/.local/share/applications/emacsclient.desktop
+  copy:
+    src: emacsclient.desktop
+    dest: /home/{{ username }}/.local/share/applications/emacsclient.desktop
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+ 
+- name: Create local emacs service
+  copy:
+    src: emacs.service
+    dest: /home/{{ username }}/.config/systemd/user/emacs.service
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: Enable emacs service
+  systemd:
+    name: emacs
+    state: started
+    enabled: yes
+    scope: user
+    daemon_reload: yes
+  become: yes
+  become_user: "{{ username }}"
