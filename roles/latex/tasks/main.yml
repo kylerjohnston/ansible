@@ -1,5 +1,5 @@
 ---
-- name: Install Texlive and packages
+- name: Install Texlive and pandoc
   dnf:
     name:
       - texlive-scheme-basic
@@ -8,8 +8,21 @@
       - texlive-fontawesome
       - texlive-moderncv
       - texlive-pdftex
+      - pandoc
     state: latest
-- name: Install pandoc
-  dnf:
-    name: pandoc
-    state: latest
+
+- name: Create ~/.pandoc
+  file:
+    path: /home/{{ username }}/.pandoc
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775
+
+- name: Clone pandoc-templates repo
+  git:
+    clone: no
+    repo: ssh://git@github.com:kylerjohnston/pandoc-templates-1.git
+    dest: /home/{{ username }}/.pandoc/templates
+  become: yes
+  become_user: "{{ username }}"
