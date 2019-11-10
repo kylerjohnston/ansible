@@ -10,10 +10,12 @@ fi
 
 # User specific aliases and functions
 function _branch {
+{% if profile == "work" %}
     hg status > /dev/null 2>&1
     if [ $? -eq 0 ]; then
        printf " \e[90mhg:\e[m\e[92m$(hg branch)\e[m"
     fi
+{% endif %}
     git branch > /dev/null 2>&1
     if [ $? -eq 0 ]; then
 	printf " \e[90mgit:\e[m\e[92m$(git branch | grep \* | cut -d ' ' -f2)\e[m"

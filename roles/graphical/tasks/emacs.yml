@@ -11,6 +11,8 @@
   shell: /home/{{ username }}/.emacs.d/bin/doom -y install
   args:
     creates: /home/{{ username }}/.doom.d/init.el
+  become: yes
+  become_user: "{{ username }}"
 
 - name: Create ~/.doom.d
   file:
