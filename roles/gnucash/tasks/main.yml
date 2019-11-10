@@ -38,9 +38,13 @@
     group: "{{ username }}"
     mode: 0664
 
-- name: Enable back2s3.timer
+- name: daemon-reload
   systemd:
     daemon-reload: yes
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Enable back2s3.timer
   systemd:
     name: back2s3.timer
     state: started
