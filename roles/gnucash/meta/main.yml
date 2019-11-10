@@ -1,5 +1,4 @@
 ---
 dependencies:
-  - role:
-      - common
-      - aws
+  - role: common
+  - role: aws
