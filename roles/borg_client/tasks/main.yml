@@ -4,14 +4,6 @@
     name: borgbackup
     state: latest
 
-- name: Create ~/.local/bin if it does not exist
-  file:
-    path: /home/{{ username }}/.local/bin
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    state: directory
-    mode: 0775
-
 - name: Copy back2spinoza.sh script
   copy:
     src: back2spinoza.sh
@@ -20,14 +12,6 @@
     group: "{{ username }}"
     mode: 0755
     force: no
-
-- name: Create ~/.config/systemd/user
-  file:
-    path: /home/{{ username }}/.config/systemd/user
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    state: directory
-    mode: 0775
 
 - name: Copy back2spinoza.service
   template:

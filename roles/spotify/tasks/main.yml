@@ -3,6 +3,7 @@
   dnf:
     name: snapd
     state: latest
+
 - name: Install Spotify
   snap:
     name: spotify

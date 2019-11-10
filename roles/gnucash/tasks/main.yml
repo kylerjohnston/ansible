@@ -11,4 +11,39 @@
     src: saved-reports-2.8
     dest: /home/{{ username }}/.local/share/gnucash/saved-reports-2.8
     owner: "{{ username }}"
-    mode: 664
+    group: "{{ username }}"
+    mode: 0664
+
+- name: Copy back2s3.sh
+  copy:
+    src: back2s3.sh
+    dest: /home/{{ username }}/.local/bin/back2s3.sh
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775
+
+- name: Copy back2s3.service
+  template:
+    src: back2s3.service.j2
+    dest: /home/{{ username }}/.config/systemd/user/back2s3.service
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: Copy back2s3.timer
+  copy:
+    src: back2s3.timer
+    dest: /home/{{ username }}/.config/systemd/user/back2s3.timer
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0664
+
+- name: Enable back2s3.timer
+  systemd:
+    name: back2s3.timer
+    state: started
+    enabled: yes
+    scope: user
+    daemon_reload: yes
+  become: yes
+  become_user: "{{ username }}"

@@ -1,4 +1,9 @@
 ---
+- name: Update all packages
+  dnf:
+    name: '*'
+    state: latest
+
 - name: Install common packages
   dnf:
     name:
@@ -41,3 +46,12 @@
     group: "{{ username }}"
     mode: 0775
     recurse: yes
+
+- name: Create ~/.local/bin directory
+  file:
+    path: /home/{{ username }}/.local/bin
+    state: directory
+    recurse: yes
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775

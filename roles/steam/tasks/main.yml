@@ -1,9 +1,16 @@
 ---
+- name: Check if RPM Fusion non-free is installed
+  stat:
+    path: /etc/yum.repos.d/rpmfusion-nonfree.repo
+  register: rpmfusion_nonfree
+
 - name: Install RPMFusion non-free
   dnf:
     name:
       - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_current }}.noarch.rpm
     state: latest
+  when: rpmfusion_nonfree.stat.exists == false
+
 - name: Install Steam
   dnf:
     name: steam

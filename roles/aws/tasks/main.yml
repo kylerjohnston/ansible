@@ -6,6 +6,14 @@
       - python3-boto3
     state: latest
 
+- name: Create ~/.aws directory
+  file:
+    path: /home/{{ username }}/.aws
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0775
+
 - name: Create AWS CLI config
   template:
     src: aws_config.j2
@@ -15,3 +23,12 @@
     mode: 0600
     backup: yes
     force: no
+
+- name: Copy empty AWS credentials file
+  template:
+    src: aws_credentials.j2
+    dest: /home/{{ username }}/.aws/credentials
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0600
+    backup: yes
