@@ -38,12 +38,6 @@
     group: "{{ username }}"
     mode: 0664
 
-- name: daemon-reload
-  systemd:
-    daemon-reload: yes
-  become: yes
-  become_user: "{{ username }}"
-
 - name: Enable back2s3.timer
   systemd:
     name: back2s3.timer
@@ -52,3 +46,4 @@
     scope: user
   become: yes
   become_user: "{{ username }}"
+  daemon_reload: yes

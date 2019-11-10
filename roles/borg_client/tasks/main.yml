@@ -36,3 +36,4 @@
     name: back2spinoza.timer
     enabled: yes
     state: started
+    daemon_reload: yes
