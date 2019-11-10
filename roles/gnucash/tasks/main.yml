@@ -40,10 +40,11 @@
 
 - name: Enable back2s3.timer
   systemd:
+    daemon-reload: yes
+  systemd:
     name: back2s3.timer
     state: started
     enabled: yes
     scope: user
-    daemon_reload: yes
   become: yes
   become_user: "{{ username }}"
