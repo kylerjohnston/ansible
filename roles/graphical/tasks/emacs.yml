@@ -8,7 +8,7 @@
   become_user: "{{ username }}"
 
 - name: Run doom install
-  shell: /home/{{ username }}/.emacs.d/bin/doom install
+  shell: /home/{{ username }}/.emacs.d/bin/doom -y install
   args:
     creates: /home/{{ username }}/.doom.d/init.el
 
