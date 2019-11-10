@@ -4,6 +4,14 @@
     name: borgbackup
     state: latest
 
+- name: Create borg mount point
+  file:
+    path: /mnt/borg
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+
 - name: Copy back2spinoza.sh script
   copy:
     src: back2spinoza.sh
