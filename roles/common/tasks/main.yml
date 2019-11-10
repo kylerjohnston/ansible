@@ -60,3 +60,5 @@
   git:
     dest: /home/{{ username }}/config
     repo: ssh://git@github.com/kylerjohnston/ansible.git
+  become: yes
+  become_user: "{{ username }}"
