@@ -38,3 +38,6 @@
 
 - name: Configure emacs
   import_tasks: emacs.yml
+
+- name: Configure GNOME
+  import_tasks: gnome.yml
