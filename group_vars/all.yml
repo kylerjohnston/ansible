@@ -1,4 +1,4 @@
 ---
 borg_share: "descartes:/var/alexandria/share"
-fedora_current: 30
+fedora_current: 31
 username: krj
