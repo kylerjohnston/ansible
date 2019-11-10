@@ -9,7 +9,7 @@
     dest: /etc/hosts
     owner: root
     group: root
-    mode: 0622
+    mode: 0644
 
 - name: Update all packages
   dnf:
