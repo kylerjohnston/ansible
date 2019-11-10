@@ -1,4 +1,8 @@
 ---
+- name: Set hostname
+  hostname:
+    name: "{{ hostname }}"
+
 - name: Update all packages
   dnf:
     name: '*'

@@ -4,6 +4,10 @@
 - hosts: localhost
   vars:
     - profile: home
+    - borg_share: "descartes:/var/alexandria/share"
+    - username: krj
+    - fedora_current: 31
+    - hostname: spooky.thislanismy.lan
 
   roles:
     - aws
