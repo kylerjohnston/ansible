@@ -35,5 +35,6 @@
   systemd:
     name: back2spinoza.timer
     enabled: yes
+    scope: user
     state: started
     daemon_reload: yes
