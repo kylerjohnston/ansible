@@ -29,6 +29,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
+  register: doom_config
 
 - name: Create ~/.doom.d/init.el
   copy:
@@ -45,6 +46,13 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
+  register: doom_packages
+
+- name: doom refresh
+  shell: /home/{{ username }}/.emacs.d/bin/doom -y refresh && /home/{{ username }}/.emacs.d/bin/doom autoloads
+  become: yes
+  become_user: "{{ username }}"
+  when: doom_config.changed or doom_packages.changed
 
 - name: Create ~/.local/share/applications
   file:

@@ -63,3 +63,11 @@
     repo: ssh://git@github.com/kylerjohnston/ansible.git
     dest: /home/{{ username }}/config
     accept_hostkey: yes
+
+- name: Copy git config
+  template:
+    src: gitconfig.j2
+    dest: /home/{{ username }}/.gitconfig
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
