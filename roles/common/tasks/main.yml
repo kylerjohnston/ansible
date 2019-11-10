@@ -55,3 +55,8 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0775
+
+- name: Sync ansible repo
+  git:
+    dest: /home/{{ username }}/config
+    repo: ssh://git@github.com:kylerjohnston/ansible.git
