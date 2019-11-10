@@ -1,41 +1,55 @@
 ---
 - name: Natural scrolling
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
     value: "true"
     state: present
 
 - name: Super + W to close window
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/wm/keybindings/close"
     value: "['<Super>w']"
     state: present
 
 - name: Enable night light
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
     value: "true"
     state: present
 
 - name: Disable night-light automatic schedule
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-schedule-automatic"
     value: "false"
     state: present
 
 - name: Set night light temperature
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
     value: "uint32 3700"
     state: present
 
 - name: Set night light schedule from
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-schedule-from"
     value: "0.0"
     state: present
 
 - name: Set night light schedule to
+  become: yes
+  become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-schedule-to"
     value: "0.0"
