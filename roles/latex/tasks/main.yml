@@ -22,7 +22,8 @@
 - name: Clone pandoc-templates repo
   git:
     clone: no
-    repo: ssh://git@github.com:kylerjohnston/pandoc-templates-1.git
+    repo: ssh://git@github.com/kylerjohnston/pandoc-templates-1.git
     dest: /home/{{ username }}/.pandoc/templates
+    accept_hostkey: yes
   become: yes
   become_user: "{{ username }}"
