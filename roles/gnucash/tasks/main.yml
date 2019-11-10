@@ -6,6 +6,15 @@
       - gnucash
     state: latest
 
+- name: Create ~/.local/share/gnucash
+  file:
+    state: directory
+    path: /home/{{ username }}/.local/share/gnucash
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    recurse: yes
+
 - name: Copy Gnucash stylesheets
   copy:
     src: saved-reports-2.8
