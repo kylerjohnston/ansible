@@ -3,6 +3,7 @@
   git:
     repo: ssh://git@github.com/kylerjohnston/doom-emacs.git
     dest: /home/{{ username }}/.emacs.d
+    accept_hostkey: yes
   become: yes
   become_user: "{{ username }}"
 

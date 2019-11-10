@@ -55,3 +55,11 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0775
+
+- name: Clone ansible repo
+  become: yes
+  become_user: "{{ username }}"
+  git:
+    repo: ssh://git@github.com/kylerjohnston/ansible.git
+    dest: /home/{{ username }}/config
+    accept_hostkey: yes
