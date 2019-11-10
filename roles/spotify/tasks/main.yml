@@ -8,3 +8,5 @@
   snap:
     name: spotify
     state: present
+  become: yes
+  become_user: "{{ username }}"
