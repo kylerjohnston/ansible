@@ -3,6 +3,14 @@
   hostname:
     name: "{{ hostname }}"
 
+- name: Install /etc/hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0622
+
 - name: Update all packages
   dnf:
     name: '*'
