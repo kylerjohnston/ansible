@@ -1,10 +1,10 @@
 ---
-- name: Natural scrolling
+- name: Kill natural scrolling with fire
   become: yes
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
-    value: "true"
+    value: "false"
     state: present
 
 - name: Super + W to close window
