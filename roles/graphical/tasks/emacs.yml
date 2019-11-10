@@ -1,11 +1,16 @@
 ---
-- name: Install doom
+- name: Update doom repo
   git:
     repo: ssh://git@github.com/kylerjohnston/doom-emacs.git
     dest: /home/{{ username }}/.emacs.d
     accept_hostkey: yes
   become: yes
   become_user: "{{ username }}"
+
+- name: Run doom install
+  shell: /home/{{ username }}/.emacs.d/bin/doom install
+  args:
+    creates: /home/{{ username }}/.doom.d/init.el
 
 - name: Create ~/.doom.d
   file:
