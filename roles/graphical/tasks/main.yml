@@ -34,6 +34,7 @@
       - firefox
       - gimp
       - google-chrome-stable
+      - python3-psutil
     state: latest
 
 - name: Configure emacs
