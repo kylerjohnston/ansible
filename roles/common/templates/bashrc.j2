@@ -45,6 +45,8 @@ alias ll='ls -al --color=always'
 alias ls='ls --color=always'
 alias grep='grep --color=auto'
 
-{% if profile == "home" %}
-  alias gc-old-dev-proxy='ssh -D 8000 gc-old-dev'
+{% if profile == "work" %}
+alias gc-old-dev-proxy='ssh -D 8000 gc-old-dev'
+{% elif profile == "home" %}
+alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git personal_laptop.yml'
 {% endif %}
