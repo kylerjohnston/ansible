@@ -3,6 +3,7 @@
   dnf:
     name:
       - sqlite
+      - libdbi-dbd-sqlite
       - gnucash
     state: latest
 
