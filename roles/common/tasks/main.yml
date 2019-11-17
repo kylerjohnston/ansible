@@ -21,6 +21,7 @@
     name:
       - bash
       - curl
+      - fuse-exfat
       - git
       - grep
       - mtr
