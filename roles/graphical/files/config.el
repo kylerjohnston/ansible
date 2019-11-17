@@ -34,8 +34,8 @@
 ;; org-mode
 (after! org
   ; stop hard line breaks in org mode
-  ;(add-hook 'org-mode-hook 'visual-line-mode)
   (remove-hook 'org-mode-hook 'auto-fill-mode)
+
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "WAITING(w)" "|" "DONE(d)" "CLOSED(c)")))
   (setq org-todo-keyword-faces
@@ -57,6 +57,14 @@
   (setq org-export-with-smart-quotes t)
   (setq org-enforce-todo-dependencies nil))
 
+;; Make C-RET and C-S-RET work as expected
+(map! :gni [C-return] nil) ; unset C-return
+(after! evil-org
+  (map! evil-org-mode-map
+        :gnvi [C-return] #'org-insert-heading-respect-content
+        :nvi [C-S-return] #'org-insert-todo-heading-respect-content))
+
+
 ;; salt
 (add-hook 'salt-mode-hook
           (lambda()
@@ -66,16 +74,3 @@
 ;; or, reverting stupid doom decisions
 (map! :ne "SPC m l" #'light-mode
       :ne "SPC m d" #'dark-mode)
-
-(map! (:after org
-        :map org-mode-map
-        :ni [C-return] #'org-insert-heading-respect-content
-        :ni [C-S-return] #'org-insert-todo-heading-respect-content
-
-        :map outline-mode-map
-        :ni [C-return] #'org-insert-heading-respect-content
-        :ni [C-S-return] #'org-insert-todo-heading-respect-content
-
-        :map evil-org-mode-map
-        :ni [C-return] #'org-insert-heading-respect-content
-        :ni [C-S-return] #'org-insert-todo-heading-respect-content))
