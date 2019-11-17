@@ -54,7 +54,8 @@
   (setq org-archive-location (concat "archive/archive-" (format-time-string "%Y%m" (current-time)) ".org_archive::"))
   (setq org-startup-truncated nil)
   (setq org-log-done 'time)
-  (setq org-export-with-smart-quotes t))
+  (setq org-export-with-smart-quotes t)
+  (setq org-enforce-todo-dependencies nil))
 
 ;; salt
 (add-hook 'salt-mode-hook
