@@ -1,0 +1,15 @@
+---
+# This playbook provisions my personal laptop.
+
+- hosts: localhost
+  vars:
+    - profile: work
+    - username: kjohnston
+    - fedora_current: 30
+    - hostname: T480-1014381
+
+  roles:
+    - aws
+    - common
+    - graphical
+    - spotify
