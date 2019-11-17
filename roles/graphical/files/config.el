@@ -13,6 +13,7 @@
       doom-variable-pitch-font (font-spec :family "Source Sans Pro")
       doom-big-font (font-spec :family "Source Code Pro" :size 20))
 (global-visual-line-mode 0)
+(add-hook 'text-mode-hook #'visual-line-mode)
 (remove-hook 'text-mode-hook #'auto-fill-mode)
 (auto-fill-mode 0)
 
