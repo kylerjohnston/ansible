@@ -62,7 +62,8 @@
 (after! evil-org
   (map! evil-org-mode-map
         :gnvi [C-return] #'org-insert-heading-respect-content
-        :nvi [C-S-return] #'org-insert-todo-heading-respect-content))
+        :nvi [C-S-return] #'org-insert-todo-heading-respect-content
+        :nv [tab] #'org-cycle))
 
 
 ;; salt
