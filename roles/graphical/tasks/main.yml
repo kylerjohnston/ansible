@@ -35,6 +35,7 @@
       - gimp
       - google-chrome-stable
       - python3-psutil
+      - tilix
     state: latest
 
 - name: Configure emacs
@@ -42,3 +43,6 @@
 
 - name: Configure GNOME
   import_tasks: gnome.yml
+
+- name: Configure Tilix
+  import_tasks: tilix.yml

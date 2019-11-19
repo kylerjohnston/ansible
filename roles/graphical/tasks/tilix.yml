@@ -1,0 +1,154 @@
+---
+# dconf dump /com/experts/Tilix/ to view all configured options
+
+- name: Configure Tilix - terminal-title-style
+  dconf:
+    key: "/com/gexperts/Tilix/terminal-title-style"
+    value: "small"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - theme-variant
+  dconf:
+    key: "/com/gexperts/Tilix/theme-variant"
+    value: "dark"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - user-overlay-scrollbar
+  dconf:
+    key: "/com/gexperts/Tilix/use-overlay-scrollbar"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - window-style
+  dconf:
+    key: "/com/gexperts/Tilix/window-style"
+    value: "disable-csd-hide-toolbar"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - background-color
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color"
+    value: "#1E1E1E"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - background-transparency-percent
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent"
+    value: "0"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - badge-color-set
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/badge-color-set"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - bold-color-set
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/bold-color-set"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - cursor-colors-set
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-colors-set"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - font
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/font"
+    value: "Source Code Pro 12"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - foreground-color
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color"
+    value: "#A7A7A7"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - highlight-colors-set
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/highlight-colors-set"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - palette
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette"
+    value: "['#1E1E1E', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#A7A7A7', '#5F5A60', '#CF6A4C', '#8F9D6A', '#F9EE98', '#7587A6', '#9B859D', '#AFC4DB', '#FFFFFF']"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - scrollback-unlimited
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/scrollback-unlimited"
+    value: "true"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - show-scrollbar
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/show-scrollbar"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - terminal-bell
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/terminal-bell"
+    value: "none"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - use-system-font
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-system-font"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - use-theme-colors
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-theme-colors"
+    value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - visible-name
+  dconf:
+    key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/visible-name"
+    value: "Default"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
