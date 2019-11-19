@@ -34,6 +34,7 @@
       - firefox
       - gimp
       - google-chrome-stable
+      - gnome-tweaks
       - python3-psutil
       - tilix
     state: latest
