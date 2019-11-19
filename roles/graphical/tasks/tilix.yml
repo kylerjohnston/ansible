@@ -4,7 +4,7 @@
 - name: Configure Tilix - terminal-title-style
   dconf:
     key: "/com/gexperts/Tilix/terminal-title-style"
-    value: "small"
+    value: "'small'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -12,7 +12,7 @@
 - name: Configure Tilix - theme-variant
   dconf:
     key: "/com/gexperts/Tilix/theme-variant"
-    value: "dark"
+    value: "'dark'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -28,7 +28,7 @@
 - name: Configure Tilix - window-style
   dconf:
     key: "/com/gexperts/Tilix/window-style"
-    value: "disable-csd-hide-toolbar"
+    value: "'disable-csd-hide-toolbar'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -36,7 +36,7 @@
 - name: Configure Tilix - background-color
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color"
-    value: "#1E1E1E"
+    value: "'#1E1E1E'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -76,7 +76,7 @@
 - name: Configure Tilix - font
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/font"
-    value: "Source Code Pro 12"
+    value: "'Source Code Pro 12'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -84,7 +84,7 @@
 - name: Configure Tilix - foreground-color
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color"
-    value: "#A7A7A7"
+    value: "'#A7A7A7'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -124,7 +124,7 @@
 - name: Configure Tilix - terminal-bell
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/terminal-bell"
-    value: "none"
+    value: "'none'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -148,7 +148,7 @@
 - name: Configure Tilix - visible-name
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/visible-name"
-    value: "Default"
+    value: "'Default'"
     state: present
   become: yes
   become_user: "{{ username }}"
