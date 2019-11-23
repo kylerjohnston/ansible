@@ -1,7 +1,8 @@
 ---
-- name: Install guile
+- name: Install guile and Racket
   dnf:
     name:
       - guile
       - guile22
+      - racket
     state: latest
