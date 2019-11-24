@@ -17,7 +17,9 @@
   become: yes
   become_user: "{{ username }}"
 
-- name: Configure Tilix - terminal-title-style dconf: key: "/com/gexperts/Tilix/terminal-title-style"
+- name: Configure Tilix - terminal-title-style
+  dconf:
+    key: "/com/gexperts/Tilix/terminal-title-style"
     value: "'small'"
     state: present
   become: yes
