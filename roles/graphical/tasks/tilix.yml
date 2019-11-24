@@ -1,9 +1,23 @@
 ---
-# dconf dump /com/experts/Tilix/ to view all configured options
+# dconf dump /com/gexperts/Tilix/ to view all configured options
 
-- name: Configure Tilix - terminal-title-style
+- name: Configure Tilix - prompt-on-close
   dconf:
-    key: "/com/gexperts/Tilix/terminal-title-style"
+    key: "/com/gexperts/Tilix/prompt-on-close"
+    value: "true"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - session-name
+  dconf:
+    key: "/com/gexperts/Tilix/session-name"
+    value: "'${activeTerminalTitle}'"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - terminal-title-style dconf: key: "/com/gexperts/Tilix/terminal-title-style"
     value: "'small'"
     state: present
   become: yes
@@ -21,6 +35,14 @@
   dconf:
     key: "/com/gexperts/Tilix/use-overlay-scrollbar"
     value: "false"
+    state: present
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure Tilix - use-tabs
+  dconf:
+    key: "/com/gexperts/Tilix/use-tabs"
+    value: "true"
     state: present
   become: yes
   become_user: "{{ username }}"
