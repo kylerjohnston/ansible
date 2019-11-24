@@ -1,0 +1,13 @@
+---
+- name: Install CUPS
+  dnf:
+    name: cups
+    state: present
+
+- name: See if Downstairs Brother is installed
+  shell: lpstat -a
+  register: lpstat
+
+- name: Install Downstairs Brother printer
+  shell: lpadmin -p DownstairsBrother -D "DownstairsBrother" -L "Living room" -m "foomatic:Brother-HL-2170W-ljet4d.ppd" -v http://192.168.1.3:631/ipp -E
+  when: lpstat.stdout.find('DownstairsBrother') == -1
