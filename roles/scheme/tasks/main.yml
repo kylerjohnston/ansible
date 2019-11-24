@@ -4,5 +4,4 @@
     name:
       - guile
       - guile22
-      - racket
     state: latest
