@@ -38,6 +38,7 @@
     name: "{{ username }}"
     shell: /bin/bash
     state: present
+    groups: wheel
 
 - name: Bash configuration
   import_tasks: bash_configuration.yml
