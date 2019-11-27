@@ -52,7 +52,7 @@
   shell: /home/{{ username }}/.emacs.d/bin/doom -y refresh && /home/{{ username }}/.emacs.d/bin/doom autoloads
   become: yes
   become_user: "{{ username }}"
-  when: doom_config.changed or doom_packages.changed
+  when: doom_packages.changed
 
 - name: Create ~/.local/share/applications
   file:
@@ -82,7 +82,7 @@
 - name: Enable emacs service
   systemd:
     name: emacs
-    state: restarted
+    state: started
     enabled: yes
     scope: user
     daemon_reload: yes
