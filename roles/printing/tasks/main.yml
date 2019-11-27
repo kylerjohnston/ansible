@@ -5,7 +5,7 @@
     state: present
 
 - name: See if Downstairs Brother is installed
-  shell: lpstat -l | grep DownstairsBrother
+  shell: lpstat -l
   register: lpstat
 
 - name: Install Downstairs Brother printer
