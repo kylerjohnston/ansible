@@ -164,7 +164,7 @@
 - name: Configure Tilix - use-theme-colors
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-theme-colors"
-    value: "false"
+    value: "true"
     state: present
   become: yes
   become_user: "{{ username }}"
