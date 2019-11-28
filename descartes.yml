@@ -6,4 +6,5 @@
     - profile: home_server
   roles:
     - common
+    - descartes
     - server_common

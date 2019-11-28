@@ -1,0 +1,29 @@
+---
+- name: Install login-info.sh
+  copy:
+    src: login-info.sh
+    dest: /etc/profile.d/login-info.sh
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: Ensure /root/scripts directory exists
+  file:
+    path: /root/scripts
+    state: directory
+    owner: root
+    group: root
+  become: yes
+  become_user: root
+
+- name: Install mount-drive.sh
+  copy:
+    src: mount-drive.sh
+    dest: /root/scripts/mount-drive.sh
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  become_user: root
