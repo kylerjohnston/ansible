@@ -1,3 +1,4 @@
 ---
 ansible_ssh_private_key_file: ~/.ssh/ansible.pem
 ansible_user: ansible
+borg_share: "descartes:/var/alexandria"
