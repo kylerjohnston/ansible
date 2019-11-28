@@ -2,7 +2,8 @@
 - hosts: servers
   vars:
     - username: krj
-    - hostname: descartes.lan.thislanismy
+    - hostname: descartes.thislanismy.lan
     - profile: home_server
   roles:
     - common
+    - server_common

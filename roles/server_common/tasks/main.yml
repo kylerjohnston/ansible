@@ -1,0 +1,10 @@
+---
+- name: Install motd
+  copy:
+    src: motd/{{ hostname }}.motd
+    dest: /etc/motd
+    mode: 0644
+    owner: root
+    group: root
+  become: yes
+  become_user: root
