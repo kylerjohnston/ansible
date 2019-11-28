@@ -27,7 +27,7 @@ info "Starting backup to $1"
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
-/usr/local/bin/borg create                         \
+borg create                         \
     --verbose                       \
     --filter AME                    \
     --list                          \
@@ -64,7 +64,7 @@ info "Pruning repository"
 # limit prune's operation to this machine's archives and not apply to
 # other machines' archives also:
 
-/usr/local/bin/borg prune                          \
+borg prune                          \
     --list                          \
     --prefix '{hostname}-'          \
     --show-rc                       \
