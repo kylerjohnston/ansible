@@ -1,0 +1,9 @@
+---
+- name: Install sysadmin tools
+  packages:
+    name:
+      - figlet
+      - jp2a
+    state: latest
+  become: yes
+  become_user: root
