@@ -1,0 +1,6 @@
+---
+- name: Install laptop packages
+  package:
+    name:
+      - fuse-exfat
+    state: latest

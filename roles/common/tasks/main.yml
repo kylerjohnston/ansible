@@ -2,6 +2,8 @@
 - name: Set hostname
   hostname:
     name: "{{ hostname }}"
+  become: yes
+  become_user: root
 
 - name: Install /etc/hosts
   template:
@@ -10,18 +12,21 @@
     owner: root
     group: root
     mode: 0644
+  become: yes
+  become_user: root
 
 - name: Update all packages
-  dnf:
+  package:
     name: '*'
     state: latest
+  become: yes
+  become_user: root
 
 - name: Install common packages
-  dnf:
+  package:
     name:
       - bash
       - curl
-      - fuse-exfat
       - git
       - grep
       - mtr
@@ -32,6 +37,8 @@
       - vim-common
       - vim-enhanced
     state: latest
+  become: yes
+  become_user: root
 
 - name: Create {{ username }} user
   user:
@@ -39,6 +46,18 @@
     shell: /bin/bash
     state: present
     groups: wheel
+  become: yes
+  become_user: root
+
+- name: Create ~/tmp directory
+  file:
+    path: /home/{{ username }}/tmp
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+  become: yes
+  become_user: root
 
 - name: Bash configuration
   import_tasks: bash_configuration.yml
@@ -51,6 +70,8 @@
     group: "{{ username }}"
     force: yes
     mode: 0664
+  become: yes
+  become_user: root
 
 - name: Create local systemd directory
   file:
@@ -60,6 +81,8 @@
     group: "{{ username }}"
     mode: 0775
     recurse: yes
+  become: yes
+  become_user: root
 
 - name: Create ~/.local/bin directory
   file:
@@ -69,6 +92,8 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0775
+  become: yes
+  become_user: root
 
 - name: Clone ansible repo
   become: yes
@@ -85,3 +110,5 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
+  become: yes
+  become_user: root
