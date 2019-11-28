@@ -19,7 +19,6 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
-    force: no
 
 - name: Copy back2spinoza.service
   template:
