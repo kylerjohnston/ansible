@@ -14,27 +14,32 @@
     service: http
     permanent: yes
     state: enabled
+  become: yes
+  become_user: root
 
 - name: Ensure /var/www/html exists
-  path:
-    file: /var/www/html
+  file:
+    path: /var/www/html
     state: directory
     owner: root
-    group: nginx
-    mode: 0665
-    recurse: yes
+    group: root
+    mode: 0777
   become: yes
-  become_user: yes
+  become_user: root
 
 - name: Set SELinux fcontext
   sefcontext:
     target: '/var/www/html(/.*)?'
     setype: httpd_sys_content_t
   register: html_context
+  become: yes
+  become_user: root
 
 - name: Apply new SELinux context
   command: restorecon -Rv /var/www/html
   when: html_context.changed
+  become: yes
+  become_user: root
 
 - name: Restart nginx
   systemd:

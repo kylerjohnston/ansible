@@ -29,7 +29,7 @@
   become_user: root
 
 - name: Install packages
-  packages:
+  package:
     name: nginx
     state: present
   become: yes

@@ -20,7 +20,7 @@
   become_user: root
 
 - name: Install server_common packages
-  packages:
+  package:
     name:
       - lsof
     state: present
