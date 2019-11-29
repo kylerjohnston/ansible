@@ -37,3 +37,24 @@
 
 - name: nginx configuration
   import_tasks: nginx.yml
+
+- name: Install check-drive.sh
+  copy:
+    src: check-drive.sh
+    dest: /usr/local/bin/check-drive.sh
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: Set cron for check-drive.sh
+  cron:
+    name: "check-drive.sh"
+    minute: "*"
+    hour: "*"
+    month: "*"
+    day: "*"
+    job: "/usr/local/bin/check-drive.sh"
+  become: yes
+  become_user: root
