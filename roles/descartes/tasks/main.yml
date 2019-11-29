@@ -27,3 +27,13 @@
     mode: 0755
   become: yes
   become_user: root
+
+- name: Install packages
+  packages:
+    name: nginx
+    state: present
+  become: yes
+  become_user: root
+
+- name: nginx configuration
+  import_tasks: nginx.yml

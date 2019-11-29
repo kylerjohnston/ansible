@@ -1,0 +1,45 @@
+---
+- name: Install nginx config
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  become_user: root
+
+- name: Allow http firewalld
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+
+- name: Ensure /var/www/html exists
+  path:
+    file: /var/www/html
+    state: directory
+    owner: root
+    group: nginx
+    mode: 0665
+    recurse: yes
+  become: yes
+  become_user: yes
+
+- name: Set SELinux fcontext
+  sefcontext:
+    target: '/var/www/html(/.*)?'
+    setype: httpd_sys_content_t
+  register: html_context
+
+- name: Apply new SELinux context
+  command: restorecon -Rv /var/www/html
+  when: html_context.changed
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
+  become: yes
+  become_user: root
