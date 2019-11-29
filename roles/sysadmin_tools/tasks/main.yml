@@ -1,6 +1,6 @@
 ---
 - name: Install sysadmin tools
-  packages:
+  package:
     name:
       - figlet
       - jp2a
