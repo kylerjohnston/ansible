@@ -29,6 +29,7 @@
       - curl
       - git
       - grep
+      - htop
       - mtr
       - rsync
       - ruby
