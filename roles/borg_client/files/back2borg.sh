@@ -15,11 +15,13 @@ RESPONSE=$(curl -s descartes/alexandria)
 if [ $? != 0 ]; then
     echo -e "\e[33m\e[1mCan't reach decartes/alexandria\e[0m"
     echo "Skipping backup."
+    echo "Couldn't reach descartes" | mail -s "Skipped borg backup" $(whoami)
     exit 1
 fi
 
 if [ $(echo ${RESPONSE} | cut -d, -f 1) != "UP" ]; then
     echo -e "\e[31m\e[1mThe backup drive is not mounted on descartes.\e[0m"
+    mail -s "Backup drive is not mounted on descartes" $(whoami) </dev/null
     exit 1
 fi
 
