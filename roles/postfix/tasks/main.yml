@@ -1,0 +1,16 @@
+---
+# This is for local mail only.
+- name: Install postfix
+  package:
+    name: postfix
+    state: present
+  become: yes
+  become_user: root
+
+- name: Enable postfix
+  systemd:
+    name: postfix
+    state: started
+    enabled: yes
+  become: yes
+  become_user: root
