@@ -1,10 +1,25 @@
 #!/bin/sh
 # Run like:
-# back2spinoza.sh user@host:/path/to/borg/repo
+# back2borg.sh user@host:/path/to/borg/repo
+#
 
 if [ $# -eq 0 ]; then
     echo "ERROR: Requires path to borg repo."
     echo "Run like: ./back2spinoza.sh user@host:/path/to/borg/repo"
+    exit 1
+fi
+
+# Check to see if we're on our home network, and if the borg server is up
+RESPONSE=$(curl -s descartes/alexandria)
+
+if [ $? != 0 ]; then
+    echo -e "\e[33m\e[1mCan't reach decartes/alexandria\e[0m"
+    echo "Skipping backup."
+    exit 1
+fi
+
+if [ $(echo ${RESPONSE} | cut -d, -f 1) != "UP" ]; then
+    echo -e "\e[31m\e[1mThe backup drive is not mounted on descartes.\e[0m"
     exit 1
 fi
 
@@ -35,23 +50,33 @@ borg create                         \
     --show-rc                       \
     --compression lz4               \
     --exclude-caches                \
-    --exclude "$HOME/.cache"  \
+    --exclude "$HOME/.ansible*" \
     --exclude "$HOME/.aws" \
     --exclude "$HOME/.bash*" \
-    --exclude "$HOME/.emacs.d" \
-    --exclude "$HOME/.steam" \
-    --exclude "$HOME/.java" \
-    --exclude "$HOME/Public" \
-    --exclude "$HOME/iso" \
-    --exclude "$HOME/snap" \
-    --exclude "$HOME/.local/share" \
-    --exclude "$HOME/tmp" \
-    --exclude "$HOME/Downloads" \
-    --exclude "$HOME/.mozilla" \
-    --exclude "$HOME/dot-files" \
-    --exclude "$HOME/VMs" \
-    --exclude "$HOME/FiraxisLive" \
+    --exclude "$HOME/.cache"  \
+    --exclude "$HOME/config" \
     --exclude "$HOME/Desktop" \
+    --exclude "$HOME/.doom.d" \
+    --exclude "$HOME/dot-files" \
+    --exclude "$HOME/Downloads" \
+    --exclude "$HOME/.emacs.d" \
+    --exclude "$HOME/.esd_auth" \
+    --exclude "$HOME/FiraxisLive" \
+    --exclude "$HOME/.gitconfig" \
+    --exclude "$HOME/iso" \
+    --exclude "$HOME/.java" \
+    --exclude "$HOME/.mozilla" \
+    --exclude "$HOME/.pandoc" \
+    --exclude "$HOME/.pki" \
+    --exclude "$HOME/Public" \
+    --exclude "$HOME/.racket" \
+    --exclude "$HOME/snap" \
+    --exclude "$HOME/.steam*" \
+    --exclude "$HOME/Templates" \
+    --exclude "$HOME/.tex*" \
+    --exclude "$HOME/tmp" \
+    --exclude "$HOME/.vim*" \
+    --exclude "$HOME/VMs" \
     $BORG_REPO::$DATE            \
     $HOME
 

@@ -12,35 +12,35 @@
     group: root
     mode: 0777
 
-- name: Copy back2spinoza.sh script
+- name: Copy back2borg.sh script
   copy:
-    src: back2spinoza.sh
-    dest: /home/{{ username }}/.local/bin/back2spinoza.sh
+    src: back2borg.sh
+    dest: /home/{{ username }}/.local/bin/back2borg.sh
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
 
-- name: Copy back2spinoza.service
+- name: Copy back2borg.service
   template:
-    src: back2spinoza.service.j2
-    dest: /home/{{ username }}/.config/systemd/user/back2spinoza.service
+    src: back2borg.service.j2
+    dest: /home/{{ username }}/.config/systemd/user/back2borg.service
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
 
-- name: Copy back2spinoza.timer
+- name: Copy back2borg.timer
   copy:
-    src: back2spinoza.timer
-    dest: /home/{{ username }}/.config/systemd/user/back2spinoza.timer
+    src: back2borg.timer
+    dest: /home/{{ username }}/.config/systemd/user/back2borg.timer
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0664
 
-- name: Enable back2spinoza.timer
+- name: Enable back2borg.timer
   become: yes
   become_user: "{{ username }}"
   systemd:
-    name: back2spinoza.timer
+    name: back2borg.timer
     enabled: yes
     scope: user
     state: started
