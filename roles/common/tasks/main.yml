@@ -33,6 +33,7 @@
       - mtr
       - rsync
       - ruby
+      - strace
       - the_silver_searcher
       - tmux
       - vim-common
