@@ -38,6 +38,7 @@
       - tmux
       - vim-common
       - vim-enhanced
+      - wget
     state: latest
   become: yes
   become_user: root
