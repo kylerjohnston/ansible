@@ -4,7 +4,9 @@
     - username: krj
     - hostname: descartes.thislanismy.lan
     - profile: home_server
+    - cpu_arch: armv7
   roles:
     - common
     - descartes
+    - prometheus
     - server_common

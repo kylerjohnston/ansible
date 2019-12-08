@@ -1,0 +1,44 @@
+---
+- name: Prometheus user
+  user:
+    name: prometheus
+    group: prometheus
+    create_home: no
+    home: /opt/prometheus
+    system: yes
+    uid: 3434
+    state: present
+  become: yes
+  become_user: root
+
+- name: See if prometheus is installed
+  stat:
+    path: /opt/prometheus
+  register: prometheus
+ 
+- name: Download prometheus
+  get_url:
+    dest: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
+    url: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
+  when: prometheus.stat.exists == false
+
+- name: Extract prometheus
+  unarchive:
+    src: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
+    dest: /opt
+    remote_src: yes
+  become: yes
+  become_user: root
+  when: prometheus.stat.exists == false
+  register: extract_prometheus
+
+- name: Rename to /opt/prometheus
+  command: mv /opt/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }} /opt/prometheus
+  when: prometheus.stat.exists == false
+  become: yes
+  become_user: root
+
+- name: Remove prometheus tarball
+  file:
+    path: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
+    state: absent
