@@ -43,3 +43,11 @@
   file:
     path: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
     state: absent
+
+- name: Allow prometheus in firewall
+  firewalld:
+    port: 9090/tcp
+    permanent: yes
+    state: enabled
+  become: yes
+  become_user: root
