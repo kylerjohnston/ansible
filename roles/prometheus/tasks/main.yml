@@ -20,6 +20,7 @@
   get_url:
     dest: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
     url: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
+    checksum: "{{ prometheus_checksum.{{ cpu_arch }} }}"
   when: prometheus.stat.exists == false
 
 - name: Extract prometheus

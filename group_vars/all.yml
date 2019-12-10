@@ -3,3 +3,5 @@ ansible_ssh_private_key_file: ~/.ssh/ansible.pem
 ansible_user: ansible
 borg_share: "descartes:/var/alexandria"
 prometheus_version: 2.14.0
+prometheus_checksum:
+  armv7: c957149be652b8cfda5d2915b0760ab720014dc46b7c0f49f0b19e3d723e1431
