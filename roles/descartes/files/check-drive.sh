@@ -4,9 +4,9 @@ MOUNTPOINT=/var/alexandria
 
 mount | grep $MOUNTPOINT > /dev/null 2>&1
 if [ $? != 0 ]; then
-    STATUS="DOWN"
+    STATUS=1
 else
-    STATUS="UP"
+    STATUS=0
 fi
 
-echo "${STATUS},$(date +%s)" > /var/www/html/alexandria
+echo "descartes_alexandria_mounted ${STATUS}" > /var/www/html/metrics

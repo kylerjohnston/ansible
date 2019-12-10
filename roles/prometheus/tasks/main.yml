@@ -39,15 +39,53 @@
   become: yes
   become_user: root
 
+- name: Copy prometheus config
+  copy:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
+    owner: prometheus
+    group: prometheus
+    mode: 0644
+  become: yes
+  become_user: root
+
 - name: Remove prometheus tarball
   file:
     path: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
     state: absent
+
+- name: Create /var/lib/prometheus
+  file:
+    path: /var/lib/prometheus
+    state: directory
+    owner: prometheus
+    group: prometheus
+  become: yes
+  become_user: root
 
 - name: Allow prometheus in firewall
   firewalld:
     port: 9090/tcp
     permanent: yes
     state: enabled
+  become: yes
+  become_user: root
+
+- name: Create prometheus service
+  copy:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: Enable prometheus service
+  systemd:
+    name: prometheus.service
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
   become: yes
   become_user: root
