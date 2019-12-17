@@ -1,0 +1,9 @@
+---
+- name: Check if Alertmanager is installed
+  stat:
+    path: /opt/alertmanager/alertmanager
+  register: alertmanager
+
+- name: Install Alertmanager
+  when: alertmanager.stat.exists == false
+  import_tasks: install_alertmanager.yml

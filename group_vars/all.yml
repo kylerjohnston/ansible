@@ -5,3 +5,6 @@ borg_share: "descartes:/var/alexandria"
 prometheus_version: 2.14.0
 prometheus_checksum:
   armv7: c957149be652b8cfda5d2915b0760ab720014dc46b7c0f49f0b19e3d723e1431
+alertmanager_version: 0.19.0
+alertmanager_checksum:
+  armv7: d0db8003279ca8cdb74150ebcf90dae6c9974bc5ac3aa7c220dcf5ea430636a2

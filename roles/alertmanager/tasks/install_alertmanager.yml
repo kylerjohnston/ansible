@@ -1,0 +1,19 @@
+---
+- name: Download Alertmanager
+  get_url:
+    url: https://github.com/prometheus/alertmanager/releases/download/v{{alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
+    dest: /tmp/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
+    checksum: "{{ alertmanager_checksum.{{ cpu_arch }} }}"
+
+- name: Extract Alertmanager
+  unarchive:
+    src: /tmp/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
+    dest: /opt
+    remote_src: yes
+  become: yes
+  become_user: root
+
+- name: Rename to /opt/alertmanager
+  command: mv /opt/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }} /opt/alertmanager
+  become: yes
+  become_user: root
