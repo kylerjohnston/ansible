@@ -1,8 +1,20 @@
 ---
+# This looks like an okay guide:
+# https://blog.ruanbekker.com/blog/2019/05/17/install-alertmanager-to-alert-based-on-metrics-from-prometheus/
 - name: Check if Alertmanager is installed
   stat:
     path: /opt/alertmanager/alertmanager
   register: alertmanager
+
+- name: Alertmanager user
+  user:
+    name: alertmanager
+    create_home: no
+    system: yes
+    shell: /bin/false
+    state: present
+  become: yes
+  become_user: root
 
 - name: Install Alertmanager
   when: alertmanager.stat.exists == false

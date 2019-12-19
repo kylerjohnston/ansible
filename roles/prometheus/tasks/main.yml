@@ -4,7 +4,6 @@
     name: prometheus
     group: prometheus
     create_home: no
-    home: /opt/prometheus
     system: yes
     uid: 3434
     state: present
@@ -20,7 +19,7 @@
   get_url:
     dest: /tmp/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
     url: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ cpu_arch }}.tar.gz
-    checksum: "{{ prometheus_checksum.{{ cpu_arch }} }}"
+    checksum: "{{ prometheus_checksum_armv7 }}"
   when: prometheus.stat.exists == false
 
 - name: Extract prometheus

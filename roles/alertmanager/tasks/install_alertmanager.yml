@@ -3,13 +3,15 @@
   get_url:
     url: https://github.com/prometheus/alertmanager/releases/download/v{{alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
     dest: /tmp/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
-    checksum: "{{ alertmanager_checksum.{{ cpu_arch }} }}"
+    checksum: "{{ alertmanager_checksum_armv7 }}"
 
 - name: Extract Alertmanager
   unarchive:
     src: /tmp/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
     dest: /opt
     remote_src: yes
+    owner: alertmanager
+    group: alertmanager
   become: yes
   become_user: root
 
@@ -17,3 +19,8 @@
   command: mv /opt/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }} /opt/alertmanager
   become: yes
   become_user: root
+
+- name: Remove alertmanager install tarball
+  file:
+    path: /tmp/alertmanager-{{ alertmanager_version }}.linux-{{ cpu_arch }}.tar.gz
+    state: absent
