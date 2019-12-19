@@ -7,3 +7,12 @@
     state: latest
   become: yes
   become_user: root
+
+- name: Check if Terraform is installed
+  stat:
+    path: /usr/local/bin/terraform
+  register: terraform
+
+- name: Install Terraform
+  when: terraform.stat.exists == false
+  import_tasks: install_terraform.yml
