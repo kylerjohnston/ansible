@@ -1,0 +1,8 @@
+---
+- name: See if Teams is installed
+  package_facts:
+    manager: auto
+
+- name: Install Teams
+  when: 'teams' not in ansible_facts.packages
+  import_tasks: install_teams.yml

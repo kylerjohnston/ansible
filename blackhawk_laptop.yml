@@ -10,6 +10,7 @@
 
   roles:
     - aws
+    - blackhawk
     - common
     - graphical
     - laptop

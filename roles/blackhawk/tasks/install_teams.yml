@@ -1,0 +1,12 @@
+---
+- name: Download Teams
+  get_url:
+    url: https://packages.microsoft.com/yumrepos/ms-teams/teams-1.2.00.32451-1.x86_64.rpm
+    dest: /tmp/teams.rpm
+
+- name: Install Teams
+  dnf:
+    name: /tmp/teams.rpm
+    state: present
+  become: yes
+  become_user: root
