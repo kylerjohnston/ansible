@@ -4,5 +4,5 @@
     manager: auto
 
 - name: Install Teams
-  when: 'teams' not in ansible_facts.packages
+  when: '"teams" not in ansible_facts.packages'
   import_tasks: install_teams.yml
