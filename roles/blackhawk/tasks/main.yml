@@ -1,4 +1,11 @@
 ---
+- name: Install Blackhawk packages
+  package:
+    name: tortoisehg
+    state: latest
+  become: yes
+  become_user: root
+
 - name: See if Teams is installed
   package_facts:
     manager: auto
