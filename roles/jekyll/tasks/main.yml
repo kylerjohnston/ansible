@@ -1,0 +1,7 @@
+---
+- name: Install Jekyll
+  package:
+    name: rubygem-jekyll
+    state: latest
+  become: yes
+  become_user: root
