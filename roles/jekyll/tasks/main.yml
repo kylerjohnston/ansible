@@ -7,3 +7,11 @@
     state: latest
   become: yes
   become_user: root
+
+- name: Install ruby gems
+  gem:
+    name:
+      - tzinfo-data
+    state: latest
+  become: yes
+  become_user: "{{ username }}"
