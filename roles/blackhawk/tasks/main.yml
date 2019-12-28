@@ -1,7 +1,9 @@
 ---
 - name: Install Blackhawk packages
   package:
-    name: tortoisehg
+    name:
+      - python3-passlib
+      - tortoisehg
     state: latest
   become: yes
   become_user: root
