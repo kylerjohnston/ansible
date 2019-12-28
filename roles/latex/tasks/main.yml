@@ -9,6 +9,7 @@
       - texlive-fontawesome
       - texlive-moderncv
       - texlive-pdftex
+      - texlive-ulem
       - pandoc
     state: latest
 
