@@ -21,6 +21,17 @@
   become: yes
   become_user: root
 
+- name: Create root's .bash_profile
+  copy:
+    src: bash_profile
+    dest: /root/.bash_profile
+    owner: root
+    group: root
+    mode: 0755
+    force: yes
+  become: yes
+  become_user: root
+
 - name: Create .bashrc
   template:
     src: bashrc.j2

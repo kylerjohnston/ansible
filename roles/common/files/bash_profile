@@ -3,6 +3,7 @@
 #
 if shopt -q login_shell; then
     [[ -f ~/.bashrc ]] && source ~/.bashrc
+    [[ -f ~/.env_vars ]] && source ~/.env_vars
 else
     exit 1 # Somehow this is a non-bash or non-login shell.
 fi
