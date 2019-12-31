@@ -4,7 +4,7 @@
     name:
       - texlive-scheme-basic
       - texlive-collection-fontsrecommended
-      - texliv-dvipng
+      - texlive-dvipng
       - texlive-fira
       - texlive-fontawesome
       - texlive-moderncv
