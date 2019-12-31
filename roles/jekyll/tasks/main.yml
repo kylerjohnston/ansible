@@ -2,6 +2,7 @@
 - name: Install Jekyll
   package:
     name:
+      - ruby-devel
       - rubygem-jekyll
       - rubygem-tzinfo
     state: latest
@@ -12,6 +13,9 @@
   gem:
     name:
       - tzinfo-data
+      - wdm
+      - jekyll-paginate
+      - pygments.rb
     state: latest
   become: yes
   become_user: "{{ username }}"
