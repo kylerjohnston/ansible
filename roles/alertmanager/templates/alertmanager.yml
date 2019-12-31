@@ -1,0 +1,20 @@
+global:
+  smtp_smarthost: 'smtp.domain.net:587'
+  smtp_smarthost: 'email-smtp.us-east-1.amazonaws.com:587'
+  smtp_from: 'AlertManager <alerts@muumu.us>'
+  smtp_require_tls: true
+  smtp_hello: 'alertmanager'
+  smtp_auth_username: '{{ lookup('env', 'SES_SMTP_USER') }}'
+  smtp_auth_password: '{{ lookup('env', 'SES_SMTP_PASSWORD') }}'
+
+route:
+  group_by: ['instance', 'alert']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+  receiver: team-1
+
+receivers:
+  - name: 'Kyle'
+    email_configs:
+      - to: 'kylerjohnston@gmail.com'

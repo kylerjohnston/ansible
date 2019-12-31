@@ -19,3 +19,13 @@
 - name: Install Alertmanager
   when: alertmanager.stat.exists == false
   import_tasks: install_alertmanager.yml
+
+- name: /opt/alertmanager.yml
+  template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
+    owner: alertmanager
+    group: alertmanager
+    mode: 0600
+  become: yes
+  become_user: root
