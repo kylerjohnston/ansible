@@ -30,7 +30,6 @@
       - git
       - grep
       - htop
-      - lastpass-cli
       - mtr
       - nmap-ncat
       - rsync

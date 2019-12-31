@@ -8,14 +8,3 @@
     state: latest
   become: yes
   become_user: root
-
-- name: Install ruby gems
-  gem:
-    name:
-      - tzinfo-data
-      - wdm
-      - jekyll-paginate
-      - pygments.rb
-    state: latest
-  become: yes
-  become_user: "{{ username }}"
