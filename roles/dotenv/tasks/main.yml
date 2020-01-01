@@ -1,0 +1,6 @@
+---
+- name: Check to see if dotenv is running
+  assert:
+    that:
+      - lookup('env', 'DOTENV') == "True"
+    fail_msg: "This playbook must be run using dotenv"

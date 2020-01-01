@@ -1,2 +1,5 @@
 [servers]
 descartes.thislanismy.lan
+
+[alertmanagers]
+descartes.thislanismy.lan

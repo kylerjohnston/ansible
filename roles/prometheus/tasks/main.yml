@@ -69,6 +69,15 @@
     state: enabled
   become: yes
   become_user: root
+  register: prometheus_firewall
+
+- name: Restart firewalld
+  systemd:
+    name: firewalld
+    state: restarted
+  when: prometheus_firewall.changed
+  become: yes
+  become_user: root
 
 - name: Create prometheus service
   copy:
@@ -88,3 +97,4 @@
     daemon_reload: yes
   become: yes
   become_user: root
+

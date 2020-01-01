@@ -1,6 +1,7 @@
 ---
 # This looks like an okay guide:
 # https://blog.ruanbekker.com/blog/2019/05/17/install-alertmanager-to-alert-based-on-metrics-from-prometheus/
+
 - name: Check if Alertmanager is installed
   stat:
     path: /opt/alertmanager/alertmanager
@@ -27,5 +28,60 @@
     owner: alertmanager
     group: alertmanager
     mode: 0600
+  become: yes
+  become_user: root
+
+- name: alertmanager.service
+  copy:
+    src: alertmanager.service
+    dest: /etc/systemd/system/alertmanager.service
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: Enable alertmanager.service
+  systemd:
+    name: alertmanager.service
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  become: yes
+  become_user: root
+
+- name: Allow alertmanager through firewall
+  firewalld:
+    port: 9093/tcp
+    permanent: yes
+    state: enabled
+  become: yes
+  become_user: root
+  register: alertmanager_firewall
+
+- name: Restart firewalld
+  systemd:
+    name: firewalld
+    state: restarted
+  when: alertmanager_firewall.changed
+  become: yes
+  become_user: root
+
+- name: Copy alert.rules.yml to /opt/prometheus
+  copy:
+    src: alert.rules.yml
+    dest: /opt/prometheus/alert.rules.yml
+    owner: prometheus
+    group: prometheus
+  register: alert_rules
+  become: yes
+  become_user: root
+
+- name: Restart prometheus
+  systemd:
+    name: prometheus.service
+    state: restarted
+    enabled: yes
+  when: alert_rules.changed
   become: yes
   become_user: root

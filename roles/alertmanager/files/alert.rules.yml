@@ -1,0 +1,10 @@
+groups:
+- name: alert.rules
+  rules:
+  - alert: AlexandriaNotMounted
+    expr: descartes_alexandria_mounted == 0
+    for: 10s
+    labels:
+      severity: "critical"
+    annotations:
+      summary: "The external drive is not mounted on `descartes`."

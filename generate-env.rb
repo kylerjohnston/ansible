@@ -6,14 +6,14 @@ env_vars = {
 }
 
 email = 'kylerjohnston@gmail.com'
-env_file = 'env.sh'
+env_file = '.env'
 
 if `lpass status`.include?('Not')
   system('lpass', 'login', email)
 end
 
 f = File.open(env_file, 'w')
-f.puts "#!/bin/bash"
+f.puts 'DOTENV=True'
 
 env_vars.each_key do |var|
   value = `lpass show --#{env_vars[var]['field']} "#{env_vars[var]['name']}"`

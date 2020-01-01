@@ -1,0 +1,4 @@
+---
+- hosts: alertmanagers
+  roles:
+    - alertmanager
