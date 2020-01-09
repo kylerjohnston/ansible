@@ -15,3 +15,7 @@
 - name: Install Teams
   when: '"teams" not in ansible_facts.packages'
   import_tasks: install_teams.yml
+
+- name: Install Zoom
+  when: '"zoom" not in ansible_facts.packages'
+  import_tasks: install_zoom.yml

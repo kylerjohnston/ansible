@@ -1,0 +1,12 @@
+---
+- name: Download Zoom
+  get_url:
+    url: https://blackhawknetwork.zoom.us/client/latest/zoom_x86_64.rpm
+    dest: /tmp/zoom.rpm
+
+- name: Install Zoom
+  dnf:
+    name: /tmp/zoom.rpm
+    state: present
+  become: yes
+  become_user: root
