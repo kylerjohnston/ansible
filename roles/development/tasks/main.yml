@@ -1,7 +1,8 @@
 ---
-- name: Install ruby packages
+- name: Install toolbox
   package:
     name:
-      - rubygem-rake
+      - toolbox
+    state: latest
   become: yes
   become_user: root
