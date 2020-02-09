@@ -8,11 +8,6 @@
   become: yes
   become_user: root
 
-- name: Install gems
-  gem:
-    name: dotenv
-    state: latest
-
 - name: Check if Terraform is installed
   stat:
     path: /usr/local/bin/terraform
