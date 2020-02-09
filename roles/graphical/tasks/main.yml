@@ -39,8 +39,13 @@
       - tilix
     state: latest
 
-- name: Configure emacs
+- name: Configure emacs work
   import_tasks: emacs.yml
+  when: profile == 'work'
+
+- name: Configure emacs home
+  import_tasks: emacs_home.yml
+  when: profile == 'home'
 
 - name: Configure GNOME
   import_tasks: gnome.yml

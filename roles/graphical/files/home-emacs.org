@@ -1,0 +1,213 @@
+#+TITLE: Emacs Configuration
+* UI configuration
+Disable blinking cursors and scroll bars and tool bars and menus, show line numbers:
+#+BEGIN_SRC emacs-lisp
+(blink-cursor-mode 0)
+(scroll-bar-mode 0)
+(tool-bar-mode 0)
+(tooltip-mode 0)
+(menu-bar-mode 0)
+(global-display-line-numbers-mode)
+(global-hl-line-mode 1) ;; highlight current line
+(add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; open new frames full screen
+#+END_SRC
+** TODO customize modeline
+** TODO Disable the emacs splash
+This looks like a cool replacement: [[https://github.com/emacs-dashboard/emacs-dashboard][https://github.com/emacs-dashboard/emacs-dashboard]]
+** Fonts
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(font . "Source Code Pro Medium:pixelsize=15:foundry=ADBO:weight=normal:slant=normal:width=normal:spacing=100:scalable=true"))
+#+END_SRC
+
+** Doom Themes
+#+BEGIN_SRC emacs-lisp
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nord t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+END_SRC
+
+*** TODO function to switch between light and dark mode
+* Evil
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+  :config
+  (evil-mode 1))
+#+END_SRC
+* Org mode
+** Agenda 
+Org agenda files are saved ~$HOME/org~.
+#+BEGIN_SRC emacs-lisp
+(setq-default org-agenda-files (quote ("~/org")))
+(setq org-directory "~/org")
+#+END_SRC
+
+Configure TODO keywords:
+
+#+BEGIN_SRC emacs-lisp
+(setq-default org-todo-keywords
+              '((sequence "TODO(t)" "IN PROGRESS(p)" "WAITING(w)" "|" "DONE(d)" "CLOSED(c)")))
+(setq org-todo-keyword-faces
+      '(("IN PROGRESS" warning bold)
+        ("WAITING" error bold)
+        ("CLOSED" org-done)))
+#+END_SRC
+
+Add a timestamp when you close a task:
+
+#+BEGIN_SRC emacs-lisp
+(setq-default org-log-done 'time)
+#+END_SRC
+** UI/UX
+Soft-wrap lines, and don't do it mid-word.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default org-startup-truncated nil)
+(add-hook 'org-mode-hook #'visual-line-mode)
+#+END_SRC
+
+Use indentation, not extra \*s for headings.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default org-startup-indented t)
+#+END_SRC
+
+Don't let org edit things under collapsed headings.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default org-catch-invisible-edits 'smart)
+#+END_SRC
+** Babel
+By default babel will only allow you to execute emacs-lisp source code blocks. You can enable babel to allow execution of code blocks in a bunch of different languages though --- a full list is here: https://orgmode.org/manual/Languages.html#Languages
+#+begin_src emacs-lisp
+  (setq org-src-tab-acts-natively t)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (ruby . t)))
+#+end_src
+
+#+RESULTS:
+** Publishing
+This sets up HTML export for my aphorisms project. See [[https://orgmode.org/worg/org-tutorials/org-jekyll.html][this post on orgmode.org]].
+
+#+begin_src emacs-lisp
+  (require 'ox-publish)
+  (setq org-publish-project-alist
+        '(
+          ("org-aphorisms"
+           :base-directory "~/projects/aphorisms/org/"
+           :base-extension "org"
+           :publishing-directory "~/projects/aphorisms/jekyll/"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :html-extension "html"
+           :body-only t
+           )
+
+          ("org-static-aphorisms"
+           :base-directory "~/projects/aphorisms/org"
+           :base-extension "css\\|js\\|png\\|jpg\\|gif\\"
+           :publishing-directory "~/projects/aphorisms/"
+           :recursive t
+           :publishing-function org-publish-attachment
+           )
+	
+          ("aphorisms" :components ("org-aphorisms"))))
+#+end_src
+
+** TODO org archive configuration
+** TODO Export org to jira markdown
+** TODO Compare my old emacs config
+* Dired
+Make it so if you have split windows, both with dired buffers, and you perform a rename or copy action on an item in one dired buffer, its default target is the other dired buffer.
+#+BEGIN_SRC emacs-lisp
+(setq dired-dwim-target t)
+#+END_SRC
+
+Evil keybindings:
+#+begin_src emacs-lisp
+(evil-set-initial-state 'dired-mode 'normal)
+#+end_src
+* Company
+#+begin_src emacs-lisp
+  (use-package company
+    :ensure t
+    :init (add-hook 'after-init-hook 'global-company-mode)
+    :config
+                                          ; No delay in showing suggestions
+    (setq company-idle-delay 0)
+                                          ; Show suggestions after entering 2 characters
+    (setq company-minimum-prefix-length 2))
+#+end_src
+* Languages
+** LaTeX
+Recognize ~.latex~ files as... LaTeX.
+#+BEGIN_SRC emacs-lisp
+(setq auto-mode-alist (cons '("\\.latex$" . latex-mode) auto-mode-alist))
+#+END_SRC
+** SaltStack
+#+begin_src emacs-lisp
+(use-package salt-mode
+  :ensure t
+  :config
+  (add-hook 'salt-mode-hook
+            (lambda ()
+              (flyspell-mode 1))))
+#+end_src
+** Terraform
+#+begin_src emacs-lisp
+(use-package terraform-mode
+  :ensure t)
+#+end_src
+*** TODO Company terraform
+https://melpa.org/#/company-terraform
+
+** Ruby
+Enhanced ruby mode
+#+begin_src emacs-lisp
+  (use-package enh-ruby-mode
+    :ensure t
+    :init
+    (add-to-list 'auto-mode-alist
+               '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode)))
+#+end_src
+
+flymake-ruby for syntax checking.
+#+begin_src emacs-lisp
+  (use-package flymake-ruby
+    :ensure t
+    :hook (enh-ruby-mode . flymake-ruby-load)))
+#+end_src
+** TODO Ansible
+* IN PROGRESS Magit
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t)
+#+end_src
+
+#+RESULTS:
+: t
+
+* TODO Ivy
+* Start Emacs server
+#+BEGIN_SRC emacs-lisp
+(server-start)
+#+END_SRC
+
+* References
+These are sources I've used to build my emacs configuration:
+- My old emacs config: https://github.com/kylerjohnston/dot-files/blob/971496d42a1b7c65f28114442a5742a561b1e4f2/emacs/.emacs.d/init.el
+- My doom config: https://github.com/kylerjohnston/ansible/blob/186986a6aa58bfc14f55a69c34554605c3a7178d/roles/graphical/files/config.el
+- https://github.com/angrybacon/dotemacs/
+- https://github.com/hlissner/doom-emacs
