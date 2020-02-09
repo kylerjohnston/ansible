@@ -40,8 +40,9 @@ This looks like a cool replacement: [[https://github.com/emacs-dashboard/emacs-d
 #+BEGIN_SRC emacs-lisp
 (use-package evil
   :config
-  (evil-mode 1))
+    (evil-mode 1))
 #+END_SRC
+
 * Org mode
 ** Agenda 
 Org agenda files are saved ~$HOME/org~.
@@ -98,32 +99,25 @@ By default babel will only allow you to execute emacs-lisp source code blocks. Y
 
 #+RESULTS:
 ** Publishing
-This sets up HTML export for my aphorisms project. See [[https://orgmode.org/worg/org-tutorials/org-jekyll.html][this post on orgmode.org]].
+This sets up Jekyll markdown export for my aphorisms project. See [[https://orgmode.org/worg/org-tutorials/org-jekyll.html][this post on orgmode.org]].
 
 #+begin_src emacs-lisp
+  (use-package ox-jekyll-md
+    :ensure t
+    :config (setq org-jekyll-md-use-todays-date nil))
+  (require 'ox)
   (require 'ox-publish)
+  (setq org-export-async-debug 1)
   (setq org-publish-project-alist
-        '(
-          ("org-aphorisms"
+        '(("aphorisms"
            :base-directory "~/projects/aphorisms/org/"
-           :base-extension "org"
            :publishing-directory "~/projects/aphorisms/jekyll/"
+           :base-extension "org"
            :recursive t
-           :publishing-function org-html-publish-to-html
+           :publishing-function org-jekyll-md-publish-to-md
            :headline-levels 4
-           :html-extension "html"
-           :body-only t
-           )
-
-          ("org-static-aphorisms"
-           :base-directory "~/projects/aphorisms/org"
-           :base-extension "css\\|js\\|png\\|jpg\\|gif\\"
-           :publishing-directory "~/projects/aphorisms/"
-           :recursive t
-           :publishing-function org-publish-attachment
-           )
-	
-          ("aphorisms" :components ("org-aphorisms"))))
+           :table-of-contents nil
+           :section-numbers nil)))
 #+end_src
 
 ** TODO org archive configuration
@@ -154,7 +148,7 @@ Evil keybindings:
 ** LaTeX
 Recognize ~.latex~ files as... LaTeX.
 #+BEGIN_SRC emacs-lisp
-(setq auto-mode-alist (cons '("\\.latex$" . latex-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.latex$" . latex-mode) auto-mode-alist))
 #+END_SRC
 ** SaltStack
 #+begin_src emacs-lisp
@@ -187,9 +181,10 @@ flymake-ruby for syntax checking.
 #+begin_src emacs-lisp
   (use-package flymake-ruby
     :ensure t
-    :hook (enh-ruby-mode . flymake-ruby-load)))
+    :hook (enh-ruby-mode . flymake-ruby-load))
 #+end_src
 ** TODO Ansible
+
 * IN PROGRESS Magit
 #+begin_src emacs-lisp
   (use-package magit
