@@ -1,5 +1,4 @@
 ---
 dependencies:
-  role:
-    - common
-    - development
+  - role: common
+  - role: development
