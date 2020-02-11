@@ -4,6 +4,7 @@
     name:
       - figlet
       - jp2a
+      - netmask
     state: latest
   become: yes
   become_user: root
