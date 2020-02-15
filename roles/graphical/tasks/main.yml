@@ -52,3 +52,11 @@
 
 - name: Configure Tilix
   import_tasks: tilix.yml
+
+- name: Set default applications
+  copy:
+    src: mimeapps.list
+    dest: /home/{{ username }}/.config/mimeapps.list
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
