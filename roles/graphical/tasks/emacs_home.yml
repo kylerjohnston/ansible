@@ -1,25 +1,11 @@
 ---
-- name: Copy init.el
-  copy:
-    src: home-init.el
-    dest: /home/{{ username }}/.emacs.d/init.el
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    force: yes
-    mode: 0664
+- name: Clone ~/.emacs.d/
   become: yes
   become_user: "{{ username }}"
-
-- name: Copy emacs.org
-  copy:
-    src: home-emacs.org
-    dest: /home/{{ username }}/.emacs.d/emacs.org
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    force: yes
-    mode: 0664
-  become: yes
-  become_user: "{{ username }}"
+  git:
+    repo: ssh://git@github.com/kylerjohnston/emacs.d.git
+    dest: /home/{{ username }}/.emacs.d
+    accept_hostkey: yes
 
 - name: Create ~/.local/share/applications
   file:
