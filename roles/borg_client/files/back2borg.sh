@@ -56,6 +56,7 @@ borg create                         \
     --exclude "$HOME/.aws" \
     --exclude "$HOME/.bash*" \
     --exclude "$HOME/.cache"  \
+    --exclude "$HOME/.local/share/containers" \
     --exclude "$HOME/config" \
     --exclude "$HOME/Desktop" \
     --exclude "$HOME/.doom.d" \
