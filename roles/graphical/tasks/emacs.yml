@@ -1,58 +1,11 @@
 ---
-- name: Update doom repo
+- name: Clone ~/.emacs.d/
+  become: yes
+  become_user: "{{ username }}"
   git:
-    repo: ssh://git@github.com/kylerjohnston/doom-emacs.git
+    repo: ssh://git@github.com/kylerjohnston/emacs.d.git
     dest: /home/{{ username }}/.emacs.d
     accept_hostkey: yes
-  become: yes
-  become_user: "{{ username }}"
-
-- name: Run doom install
-  shell: /home/{{ username }}/.emacs.d/bin/doom -y install
-  args:
-    creates: /home/{{ username }}/.doom.d/init.el
-  become: yes
-  become_user: "{{ username }}"
-
-- name: Create ~/.doom.d
-  file:
-    path: /home/{{ username }}/.doom.d
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0775
-
-- name: Create ~/.doom.d/config.el
-  copy:
-    src: config.el
-    dest: /home/{{ username }}/.doom.d/config.el
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0664
-  register: doom_config
-
-- name: Create ~/.doom.d/init.el
-  copy:
-    src: init.el
-    dest: /home/{{ username }}/.doom.d/init.el
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0664
-
-- name: Create ~/.doom.d/packages.el
-  copy:
-    src: packages.el
-    dest: /home/{{ username }}/.doom.d/packages.el
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0664
-  register: doom_packages
-
-- name: doom refresh
-  shell: /home/{{ username }}/.emacs.d/bin/doom -y refresh && /home/{{ username }}/.emacs.d/bin/doom autoloads
-  become: yes
-  become_user: "{{ username }}"
-  when: doom_packages.changed
 
 - name: Create ~/.local/share/applications
   file:
