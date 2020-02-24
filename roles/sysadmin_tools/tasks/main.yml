@@ -5,6 +5,7 @@
       - figlet
       - jp2a
       - netmask
+      - ShellCheck
     state: latest
   become: yes
   become_user: root
