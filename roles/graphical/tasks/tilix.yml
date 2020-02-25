@@ -1,4 +1,24 @@
 ---
+- name: Create themes directory
+  file:
+    path: /home/{{ username }}/.config/tilix/schemes
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+  become: yes
+  become_user: root
+
+- name: Copy Tilix tomorrow-night theme
+  copy:
+    src: tomorrow-night.json
+    dest: /home/{{ username }}/.config/tilix/schemes/tomorrow-night.json
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  become: yes
+  become_user: root
+  
 # dconf dump /com/gexperts/Tilix/ to view all configured options
 
 - name: Configure Tilix - prompt-on-close
@@ -60,7 +80,7 @@
 - name: Configure Tilix - background-color
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color"
-    value: "'#1E1E1E'"
+    value: "'#1D1F21'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -108,7 +128,7 @@
 - name: Configure Tilix - foreground-color
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color"
-    value: "'#A7A7A7'"
+    value: "'#C5C8C6'"
     state: present
   become: yes
   become_user: "{{ username }}"
@@ -124,7 +144,7 @@
 - name: Configure Tilix - palette
   dconf:
     key: "/com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette"
-    value: "['#000000', '#CC0000', '#4D9A05', '#C3A000', '#3464A3', '#754F7B', '#05979A', '#D3D6CF', '#545652', '#EF2828', '#89E234', '#FBE84F', '#729ECF', '#AC7EA8', '#34E2E2', '#EDEDEB']"
+    value: "['#000000', '#CC6666', '#B5BD68', '#F0C674', '#81A2BE', '#B294BB', '#8ABEB7', '#FFFFFF', '#000000', '#CC6666', '#B5BD68', '#F0C674', '#81A2BE', '#B294BB', '#8ABEB7', '#FFFFFF']"
     state: present
   become: yes
   become_user: "{{ username }}"
