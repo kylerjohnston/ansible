@@ -3,5 +3,11 @@
   package:
     name:
       - rubygem-rake
+      - zlib-devel
   become: yes
   become_user: root
+
+- name: Install solargraph
+  gem:
+    name: solargraph
+    state: present
