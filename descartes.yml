@@ -11,3 +11,4 @@
     - descartes
     - prometheus
     - server_common
+    - borg_server
