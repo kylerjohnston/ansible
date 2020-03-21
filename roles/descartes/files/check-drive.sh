@@ -2,11 +2,11 @@
 
 MOUNTPOINT=/var/alexandria
 
-mount | grep $MOUNTPOINT > /dev/null 2>&1
-if [ $? != 0 ]; then
+if mount | grep $MOUNTPOINT > /dev/null 2>&1
+then
     STATUS=0
 else
     STATUS=1
 fi
 
-echo "descartes_alexandria_mounted ${STATUS}" > /var/www/html/metrics
+sed -Ei "s/descartes_alexandria_mounted [0-9]+/descartes_alexandria_mounted ${STATUS}/g" /var/www/html/metrics
