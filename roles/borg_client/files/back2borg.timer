@@ -2,9 +2,9 @@
 Description=Execute Borg backup
 
 [Timer]
-OnBootSec=60
-OnUnitActiveSec=3600
-Unit=back2borg.service
+OnCalendar=daily
+AccuracySec=12h
+Persistent=true
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

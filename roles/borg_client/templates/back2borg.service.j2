@@ -2,7 +2,7 @@
 Description=Back up home directory to remote Borg repository
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/home/{{ username }}/.local/bin/back2borg.sh {{ borg_share }}/{{ ansible_hostname }}
 
 [Install]
