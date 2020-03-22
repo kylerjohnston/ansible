@@ -4,7 +4,13 @@
   become: yes
   become_user: root
 
+- name: Download RVM
+  get_url:
+    url: https://get.rvm.io
+    dest: /tmp/rvm.sh
+    mode: 0755
+
 - name: Install RVM multi-user
-  command: curl -sSL https://get.rvm.io | bash -s stable
+  command: bash /tmp/rvm.sh stable
   become: yes
   become_user: root
