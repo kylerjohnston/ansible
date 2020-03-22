@@ -8,3 +8,10 @@ groups:
       severity: "critical"
     annotations:
       summary: "The external drive is not mounted on `descartes`."
+  - alert: NoRecentBackups
+    expr: last_spooky_backup > 7
+    for: 1s
+    labels:
+      severity: "critical"
+    annotations:
+      summary: "No backups from spooky in the past week."

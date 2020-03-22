@@ -21,10 +21,10 @@
 - name: Set cron for borg_check.rb
   cron:
     name: borg_check.rb
-    minute: 5
-    hour: 6
+    minute: "5"
+    hour: "6"
     month: "*"
     day: "*"
-    job: sed -Ei "s/last_spooky_backup [0-9]+/last_spooky_backup $(/root/scripts/borg_check.rb '/var/alexandria/spooky')/g" /var/www/html/metrics
+    job: /usr/bin/sed -Ei "s/last_spooky_backup [0-9]+/last_spooky_backup $(/root/scripts/borg_check.rb '/var/alexandria/spooky')/g" /var/www/html/metrics
   become: yes
   become_user: root
