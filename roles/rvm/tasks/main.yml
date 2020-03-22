@@ -1,0 +1,9 @@
+---
+- name: See if rvm is installed
+  stat:
+    path: /usr/local/rvm
+  register: rvm
+
+- name: Install RVM
+  when: rvm.stat.exists == false
+  import_tasks: install_rvm.yml
