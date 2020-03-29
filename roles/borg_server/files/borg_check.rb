@@ -20,7 +20,7 @@ end
 
 begin
   last_backup = Date.strptime(
-    `borg list #{borg_repo} 2&>/dev/null | tail -n 1`.split(' ')[2],
+    `borg list #{borg_repo} | tail -n 1`.split(' ')[2],
     '%Y-%m-%d'
   )
   puts (Date.today - last_backup).to_i
