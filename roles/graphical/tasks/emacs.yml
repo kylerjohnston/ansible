@@ -6,6 +6,7 @@
     repo: ssh://git@github.com/kylerjohnston/emacs.d.git
     dest: /home/{{ username }}/.emacs.d
     accept_hostkey: yes
+    update: no
 
 - name: Create ~/.local/share/applications
   file:
