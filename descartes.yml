@@ -9,5 +9,5 @@
     - common
 #    - descartes
 #    - prometheus
-#    - server_common
+    - server_common
 #    - borg_server

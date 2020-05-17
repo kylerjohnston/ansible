@@ -114,3 +114,11 @@
     mode: 0644
   become: yes
   become_user: root
+
+- name: Remove pi user
+  user:
+    name: pi
+    state: absent
+    remove: yes
+  become: yes
+  become_user: root
