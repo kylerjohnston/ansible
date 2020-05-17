@@ -27,7 +27,7 @@ f.puts 'DOTENV=True'
 
 env_vars.each_key do |var|
   value = `lpass show --#{env_vars[var]['field']} "#{env_vars[var]['name']}"`
-  f.puts "#{var}=#{value}"
+  f.puts "#{var}='#{value}'"
 end
 
 File.chmod(0770, env_file)
