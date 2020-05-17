@@ -1,0 +1,15 @@
+---
+- name: Install Red Hat common packages
+  package:
+    name:
+      - nmap-ncat
+      - vim-enhanced
+
+- name: Create {{ username }} user
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    state: present
+    groups: wheel
+  become: yes
+  become_user: root

@@ -6,8 +6,10 @@
     - profile: home_server
     - cpu_arch: armv7
   roles:
+    - alertmanager
     - common
-#    - descartes
-#    - prometheus
-#    - server_common
-#    - borg_server
+    - descartes
+    - prometheus
+    - server_common
+    - borg_server
+    - rvm

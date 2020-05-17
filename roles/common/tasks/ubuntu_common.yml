@@ -1,0 +1,15 @@
+---
+- name: Install Ubuntu common packages
+  package:
+    name:
+      - netcat-traditional
+      - vim
+
+- name: Create {{ username }} user
+  user:
+    name: "{{ username }}"
+    shell: /bin/bash
+    state: present
+    groups: sudo
+  become: yes
+  become_user: root

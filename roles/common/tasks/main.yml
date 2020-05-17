@@ -30,29 +30,23 @@
       - git
       - grep
       - htop
-      - lastpass-cli
       - mtr
-      - nmap-ncat
+      - ripgrep
       - rsync
       - ruby
       - strace
-      - the_silver_searcher
       - tmux
       - vim-common
-      - vim-enhanced
       - wget
     state: latest
   become: yes
   become_user: root
 
-- name: Create {{ username }} user
-  user:
-    name: "{{ username }}"
-    shell: /bin/bash
-    state: present
-    groups: wheel
-  become: yes
-  become_user: root
+- include_tasks: redhat_common.yml
+  when: ansible_os_family == "RedHat"
+
+- include_tasks: ubuntu_common.yml
+  when: ansible_os_family == "Debian"
 
 - name: Create ~/tmp directory
   file:
@@ -78,6 +72,17 @@
   become: yes
   become_user: root
 
+- name: ssh authorized keys
+  copy:
+    src: authorized_keys
+    dest: /home/{{ username }}/.ssh/authorized_keys
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    force: yes
+    mode: 0600
+  become: yes
+  become_user: root
+
 - name: Create local systemd directory
   file:
     path: /home/{{ username }}/.config/systemd/user
@@ -99,14 +104,6 @@
     mode: 0775
   become: yes
   become_user: root
-
-- name: Clone ansible repo
-  become: yes
-  become_user: "{{ username }}"
-  git:
-    repo: ssh://git@github.com/kylerjohnston/ansible.git
-    dest: /home/{{ username }}/config
-    accept_hostkey: yes
 
 - name: Copy git config
   template:
