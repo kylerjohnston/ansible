@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 
 env_vars = {
-  'SES_SMTP_USER' => {'field' => 'username', 'name' => 'SES SMTP muumuus'},
-  'SES_SMTP_PASSWORD' => {'field' => 'password', 'name' => 'SES SMTP muumuus'}
+  'SES_SMTP_USER' => { 'field' => 'username', 'name' => 'SES SMTP muumuus' },
+  'SES_SMTP_PASSWORD' => {
+    'field' => 'password', 'name' => 'SES SMTP muumuus'
+  },
+  'SPOTIFY_PASSWORD' => { 'field' => 'password', 'name' => 'spotify.com' },
+  'MOPIDY_SPOTIFY_CLIENT_ID' => {
+    'field' => 'username', 'name' => 'Mopidy Spotify'
+  },
+  'MOPIDY_SPOTIFY_CLIENT_SECRET' => {
+    'field' => 'password', 'name' => 'Mopidy Spotify'
+  },
+  'LASTFM_PASSWORD' => { 'field' => 'password', 'name' => 'Last.fm' }
 }
 
 email = 'kylerjohnston@gmail.com'

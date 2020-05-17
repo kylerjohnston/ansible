@@ -3,7 +3,10 @@
   package:
     name:
       - netcat-traditional
+      - python-setuptools
       - vim
+  become: yes
+  become_user: root
 
 - name: Create {{ username }} user
   user:

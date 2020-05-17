@@ -1,0 +1,33 @@
+# For information about configuration values that can be set in this file see:
+#
+#   https://docs.mopidy.com/en/latest/config/
+#
+# Run `sudo mopidyctl config` to see the current effective config, based on
+ #both defaults and this configuration file.
+
+[http]
+enabled = true
+hostname = 0.0.0.0
+port = 6680
+zeroconf = Mopidy HTTP server on $hostname
+allowed_origins = 
+csrf_protection = true
+default_app = iris
+
+[iris]
+country = us
+locale = en_US
+
+[spotify]
+username = becomingyolo
+password = {{ lookup('env', 'SPOTIFY_PASSWORD') }}
+client_id = {{ lookup('env', 'MOPIDY_SPOTIFY_CLIENT_ID') }}
+client_secret = {{ lookup('env', 'MOPIDY_SPOTIFY_CLIENT_SECRET') }}
+bitrate = 320
+
+[youtube]
+enabled = true
+
+[scrobbler]
+username = becoming-yolo
+password = {{ lookup('env', 'LASTFM_PASSWORD') }}

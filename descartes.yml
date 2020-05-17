@@ -7,7 +7,5 @@
     - cpu_arch: armv7
   roles:
     - common
-#    - descartes
-#    - prometheus
     - server_common
-#    - borg_server
+    - mopidy
