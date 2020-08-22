@@ -8,5 +8,6 @@
   roles:
     - common
     - server_common
-    - mopidy
+#    - mopidy
     - descartes
+    - borg_server

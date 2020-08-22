@@ -1,30 +1,31 @@
 ---
-- name: Create /root/scripts
-  file:
-    path: /root/scripts/
-    state: directory
-    owner: root
-    group: root
+- name: Install borg
+  package:
+    name: borgbackup
+    state: latest
   become: yes
-  become_user: root
+      
+#- name: Create /root/scripts
+#  file:
+#    path: /root/scripts/
+#    state: directory
+#    owner: root
+#    group: root
+#  become: yes
 
-- name: Install borg_check.rb
-  copy:
-    src: borg_check.rb
-    dest: /root/scripts/borg_check.rb
-    owner: root
-    group: root
-    mode: 0755
-  become: yes
-  become_user: root
+#- name: Install borg_check.rb
+#  copy:
+#    src: borg_check.rb
+#    dest: /root/scripts/borg_check.rb
+#    owner: root
+#    group: root
+#    mode: 0755
+#  become: yes
 
-- name: Set cron for borg_check.rb
-  cron:
-    name: borg_check.rb
-    minute: "5"
-    hour: "6"
-    month: "*"
-    day: "*"
-    job: /usr/bin/sed -Ei "s/last_spooky_backup [0-9]+/last_spooky_backup $(/root/scripts/borg_check.rb '/var/alexandria/spooky')/g" /var/www/html/metrics
-  become: yes
-  become_user: root
+#- name: Set cron for borg_check.rb
+#  cron:
+#    name: borg_check.rb
+#    minute: "5"
+#    hour: "6"
+#    job: /usr/bin/sed -Ei "s/last_spooky_backup [0-9]+/last_spooky_backup $(/root/scripts/borg_check.rb '/var/alexandria/spooky')/g" /var/www/html/metrics
+#  become: yes
