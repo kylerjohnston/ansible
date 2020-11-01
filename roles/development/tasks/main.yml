@@ -1,8 +1,0 @@
----
-- name: Install toolbox
-  package:
-    name:
-      - toolbox
-    state: latest
-  become: yes
-  become_user: root

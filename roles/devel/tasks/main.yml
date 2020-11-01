@@ -1,0 +1,7 @@
+---
+- name: Install dev tools
+  dnf:
+    name: "@Development Tools"
+    state: latest
+  become: yes
+  become_user: root
