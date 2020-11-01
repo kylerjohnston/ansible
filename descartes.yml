@@ -2,7 +2,7 @@
 - hosts: servers
   vars:
     - username: krj
-    - hostname: descartes.thislanismy.lan
+    - hostname: descartes.local.muumu.us
     - profile: home_server
     - cpu_arch: armv7
   roles:
