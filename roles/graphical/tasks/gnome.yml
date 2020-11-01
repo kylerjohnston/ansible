@@ -36,18 +36,8 @@
   become_user: "{{ username }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
-    value: "uint32 3700"
-    state: present
-  when: hostname == 'spooky.thislanismy.lan'
-
-- name: Set night light temperature
-  become: yes
-  become_user: "{{ username }}"
-  dconf:
-    key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
     value: "uint32 2700"
     state: present
-  when: hostname == 'zen.local.muumu.us'
 
 - name: Set night light schedule from
   become: yes
