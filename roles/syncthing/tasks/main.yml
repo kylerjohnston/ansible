@@ -10,4 +10,7 @@
     name: syncthing
     state: started
     enabled: yes
+    user: yes
   become: yes
+  become_user: "{{ username }}"
+  when: ansible_os_family == "RedHat"
