@@ -1,6 +1,5 @@
 ---
-# This playbook provisions my personal laptop.
-
+# This playbook provisions my workstation
 - hosts: localhost
   vars:
     - profile: home
@@ -17,5 +16,5 @@
     - latex
     - printing
     - ruby
-    - spotify
     - steam
+    - syncthing

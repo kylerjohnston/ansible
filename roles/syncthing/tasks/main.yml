@@ -1,0 +1,6 @@
+---
+- name: Install syncthing
+  package:
+    name: syncthing
+    state: latest
+  become: yes
