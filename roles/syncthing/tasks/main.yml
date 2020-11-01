@@ -4,3 +4,10 @@
     name: syncthing
     state: latest
   become: yes
+
+- name: Start and enable syncthing
+  systemd:
+    name: syncthing
+    state: started
+    enabled: yes
+  become: yes
