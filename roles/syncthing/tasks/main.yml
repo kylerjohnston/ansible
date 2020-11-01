@@ -11,3 +11,20 @@
     state: started
     enabled: yes
   become: yes
+
+- name: Set descartes' syncthing web ui to be accessible on local network
+  replace:
+    path: /home/{{ username }}/.config/syncthing/config.xml
+    regexp: '127\.0\.0\.1'
+    replace: '0.0.0.0'
+  become: yes
+  when: hostname == "descartes.local.muumu.us"
+  register: descartes_syncthing_config
+
+- name: Restart syncthing
+  systemd:
+    name: syncthing@{{ username }}.service
+    state: restarted
+    enabled: yes
+  become: yes
+  when: hostname == "descartes.local.muumu.us" and descartes_syncthing_config.changed
