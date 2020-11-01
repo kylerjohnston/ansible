@@ -10,5 +10,4 @@
     name: syncthing@{{ username }}.service
     state: started
     enabled: yes
-    user: yes
   become: yes
