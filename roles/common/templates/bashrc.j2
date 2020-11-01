@@ -53,9 +53,9 @@ alias grep='grep --color=auto'
 
 {% if profile == "work" %}
 alias gc-old-dev-proxy='ssh -D 8000 gc-old-dev'
-alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git blackhawk_laptop.yml'
+alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git blackhawk_laptop.yml -i localhost,'
 {% elif hostname == 'spooky.thislanismy.lan' %}
-alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git personal_laptop.yml'
+alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git personal_laptop.yml -i localhost,'
 {% elif hostname == 'zen.local.muumu.us' %}
-alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git zen.yml'
+alias ansible-sync='sudo ansible-pull -U https://github.com/kylerjohnston/ansible.git zen.yml -i localhost,'
 {% endif %}
