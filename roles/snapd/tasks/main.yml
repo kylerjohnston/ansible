@@ -1,0 +1,7 @@
+---
+- name: Install snapd
+  package:
+    name: snapd
+    state: latest
+  become: yes
+  become_user: root

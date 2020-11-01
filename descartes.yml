@@ -8,6 +8,5 @@
   roles:
     - common
     - server_common
-#    - mopidy
     - descartes
-    - borg_server
+    - nextcloud
