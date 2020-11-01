@@ -12,3 +12,6 @@
   gem:
     name: solargraph
     state: present
+    user_install: no
+  become: yes
+  become_user: root
