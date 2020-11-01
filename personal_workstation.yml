@@ -1,0 +1,12 @@
+---
+# This playbook provisions my personal laptop.
+
+- hosts: localhost
+  vars:
+    - profile: home
+    - username: krj
+    - fedora_current: 33
+    - hostname: zen.local.muumu.us
+
+  roles:
+    - common

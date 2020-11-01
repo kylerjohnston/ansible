@@ -10,17 +10,6 @@
     state: present
   when: rpmfusion.stat.exists == false
 
-- name: Check if Google Chrome repo is installed
-  stat:
-    path: /etc/yum.repos.d/google-chrome.repo
-  register: googlechrome
-
-- name: Install Google Chrome repo
-  dnf:
-    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    state: present
-  when: googlechrome.stat.exists == false
-
 - name: Install graphical packages
   dnf:
     name:
@@ -33,7 +22,6 @@
       - ffmpeg
       - firefox
       - gimp
-      - google-chrome-stable
       - gnome-tweaks
       - python3-psutil
       - tilix

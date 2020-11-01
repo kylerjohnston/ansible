@@ -1,10 +1,10 @@
 ---
-- name: Clone ~/.emacs.d/
+- name: Clone ~/.doom.d/
   become: yes
   become_user: "{{ username }}"
   git:
-    repo: ssh://git@github.com/kylerjohnston/emacs.d.git
-    dest: /home/{{ username }}/.emacs.d
+    repo: ssh://git@github.com/kylerjohnston/doom.d.git
+    dest: /home/{{ username }}/.doom.d
     accept_hostkey: yes
     update: no
 
