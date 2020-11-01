@@ -12,6 +12,8 @@
   when: rpmfusion_nonfree.stat.exists == false
 
 - name: Install Steam
-  dnf:
+  package:
     name: steam
     state: latest
+  become: yes
+  become_user: root

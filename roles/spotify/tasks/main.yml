@@ -1,8 +1,10 @@
 ---
 - name: Install snapd
-  dnf:
+  package:
     name: snapd
     state: latest
+  become: yes
+  become_user: root
 
 - name: Install Spotify
   snap:

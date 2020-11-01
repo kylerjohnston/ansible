@@ -2,6 +2,7 @@
 - name: Install ruby packages
   package:
     name:
+      - ruby-devel
       - rubygem-rake
       - zlib-devel
   become: yes
