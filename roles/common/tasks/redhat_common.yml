@@ -4,6 +4,7 @@
     name:
       - nmap-ncat
       - vim-enhanced
+      - lm_sensors
 
 - name: Create {{ username }} user
   user:
