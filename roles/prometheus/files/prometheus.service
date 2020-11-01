@@ -12,7 +12,7 @@ ExecStart=/opt/prometheus/prometheus \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/opt/prometheus/consoles \
     --web.console.libraries=/opt/prometheus/console_libraries \
-    --web.external-url http://descartes.thislanismy.lan:9090
+    --web.external-url http://descartes.local.muumu.us:9090
 
 [Install]
 WantedBy=multi-user.target

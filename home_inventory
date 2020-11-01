@@ -1,5 +1,5 @@
 [servers]
-descartes.thislanismy.lan
+descartes.local.muumu.us
 
 [alertmanagers]
-descartes.thislanismy.lan
+descartes.local.muumu.us
