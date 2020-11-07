@@ -5,6 +5,23 @@
 - include_tasks: mopidy_rh.yml
   when: ansible_os_family == "RedHat"
 
+- name: Install /etc/mopidy/mopidy.conf
+  template:
+    src: mopidy.conf.j2
+    dest: /etc/mopidy/mopidy.conf
+    owner: mopidy
+    group: root
+    mode: 0640
+  become: yes
+
+- name: Give mopidy access to music
+  file:
+    path: "{{ music_dir }}"
+    owner: "{{ username }}"
+    group: mopidy
+    mode: 0755
+  become: yes
+
 - name: Start and enable mopidy service
   systemd:
     name: mopidy

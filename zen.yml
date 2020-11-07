@@ -6,6 +6,7 @@
     - username: krj
     - fedora_current: 33
     - hostname: zen.local.muumu.us
+    - music_dir: /home/krj/Music
 
   roles:
     - common
