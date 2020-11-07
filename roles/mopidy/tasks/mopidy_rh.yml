@@ -1,0 +1,9 @@
+---
+- name: Install mopidy, mopidy-spotify, and mopidy-mpd
+  dnf:
+    name:
+      - mopidy
+      - mopidy-spotify
+      - mopidy-mpd
+    state: latest
+  become: yes

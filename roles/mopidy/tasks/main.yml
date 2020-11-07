@@ -1,59 +1,9 @@
 ---
-- name: Add Mopidy PPA key
-  apt_key:
-    url: https://apt.mopidy.com/mopidy.gpg
-    state: present
-  become: yes
-  become_user: root
+- include_tasks: mopidy_debian.yml
+  when: ansible_os_family == "Debian"
 
-- name: Install Mopidy Debian Buster PPA
-  get_url:
-    url: https://apt.mopidy.com/buster.list
-    dest: /etc/apt/sources.list.d/mopidy.list
-    force: no
-    mode: 0644
-    owner: root
-    group: root
-  become: yes
-  become_user: root
-
-- name: Install Mopidy Debian packages
-  package:
-    name:
-      - mopidy
-      - python3-pip
-      - mopidy-spotify
-      - gstreamer1.0-plugins-bad
-    state: latest
-  become: yes
-  become_user: root
-
-- name: Install Mopidy Python3 packages
-  pip:
-    executable: /usr/bin/pip3
-    name:
-      - Mopidy-Iris
-      - Mopidy-Youtube
-      - Mopidy-Scrobbler
-    state: present
-
-- name: Install /etc/mopidy/mopidy.conf
-  template:
-    src: mopidy.conf.j2
-    dest: /etc/mopidy/mopidy.conf
-    owner: mopidy
-    group: root
-    mode: 0640
-  become: yes
-  become_user: root
-
-- name: Ensure Iris has access to install itself
-  lineinfile:
-    path: /etc/sudoers
-    regexp: '^mopidy'
-    line: "mopidy ALL=NOPASSWD: /usr/local/lib/python3.7/dist-packages/mopidy_iris/system.sh"
-  become: yes
-  become_user: root
+- include_tasks: mopidy_rh.yml
+  when: ansible_os_family == "RedHat"
 
 - name: Start and enable mopidy service
   systemd:
@@ -61,4 +11,3 @@
     state: started
     enabled: yes
   become: yes
-  become_user: root

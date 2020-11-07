@@ -14,10 +14,6 @@ allowed_origins =
 csrf_protection = true
 default_app = iris
 
-[iris]
-country = us
-locale = en_US
-
 [spotify]
 username = becomingyolo
 password = {{ lookup('env', 'SPOTIFY_PASSWORD') }}
@@ -27,7 +23,3 @@ bitrate = 320
 
 [youtube]
 enabled = true
-
-[scrobbler]
-username = becoming-yolo
-password = {{ lookup('env', 'LASTFM_PASSWORD') }}
