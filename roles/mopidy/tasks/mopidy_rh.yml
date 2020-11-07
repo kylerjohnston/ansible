@@ -1,9 +1,10 @@
 ---
-- name: Install mopidy, mopidy-spotify, and mopidy-mpd
+- name: Install mopidy, mopidy-spotify, mopidy-mpd, and ncmpcpp
   dnf:
     name:
       - mopidy
       - mopidy-spotify
       - mopidy-mpd
+      - ncmpcpp
     state: latest
   become: yes
