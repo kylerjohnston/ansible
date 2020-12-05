@@ -1,0 +1,6 @@
+---
+- name: Install Elixir
+  package:
+    name: elixir
+    state: latest
+  become: yes
