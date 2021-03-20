@@ -10,7 +10,6 @@
 
   roles:
     - aws
-    - borg_client
     - common
     - gnucash
     - graphical
