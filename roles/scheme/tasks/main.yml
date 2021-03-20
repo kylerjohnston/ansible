@@ -4,4 +4,5 @@
     name:
       - guile
       - guile22
-    state: latest
+    state: present
+  become: yes
