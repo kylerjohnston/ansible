@@ -5,7 +5,8 @@
       - sqlite
       - libdbi-dbd-sqlite
       - gnucash
-    state: latest
+    state: present
+  become: yes
 
 - name: Create ~/.local/share/gnucash
   file:

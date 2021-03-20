@@ -25,7 +25,8 @@
       - gnome-tweaks
       - python3-psutil
       - tilix
-    state: latest
+    state: present
+  become: yes
 
 - name: Configure emacs
   import_tasks: emacs.yml

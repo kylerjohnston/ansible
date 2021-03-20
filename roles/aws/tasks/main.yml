@@ -4,7 +4,8 @@
     name:
       - awscli
       - python3-boto3
-    state: latest
+    state: present
+  become: yes
 
 - name: Create ~/.aws directory
   file:

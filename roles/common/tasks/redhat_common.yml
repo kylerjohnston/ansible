@@ -5,6 +5,8 @@
       - nmap-ncat
       - vim-enhanced
       - lm_sensors
+    state: present
+  become: yes
 
 - name: Create {{ username }} user
   user:
@@ -13,4 +15,3 @@
     state: present
     groups: wheel
   become: yes
-  become_user: root

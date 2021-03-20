@@ -3,7 +3,6 @@
   hostname:
     name: "{{ hostname }}"
   become: yes
-  become_user: root
 
 - name: Install /etc/hosts
   template:
@@ -13,7 +12,6 @@
     group: root
     mode: 0644
   become: yes
-  become_user: root
 
 - name: Install common packages
   package:
@@ -31,9 +29,8 @@
       - tmux
       - vim-common
       - wget
-    state: latest
+    state: present
   become: yes
-  become_user: root
 
 - include_tasks: redhat_common.yml
   when: ansible_os_family == "RedHat"
