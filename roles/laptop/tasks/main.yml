@@ -3,4 +3,5 @@
   package:
     name:
       - fuse-exfat
-    state: latest
+    state: present
+  become: yes
