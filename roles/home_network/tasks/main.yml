@@ -36,3 +36,21 @@
     regexp: '^afpfs'
     line: 'afpfs#afp://krj:{{ afpfs_password }}@nasty.local.muumu.us/Documents	/home/krj/home-docs	fuse	user=krj,group=krj,_netdev 0 0'
   become: yes
+
+- name: Link ~/home-docs/org to ~/org
+  file:
+    src: /home/{{ username }}/home-docs/org
+    dest: /home/{{ username }}/org
+    state: link
+
+- name: Link ~/home-docs/Documents to ~/Documents
+  file:
+    src: /home/{{ username }}/home-docs/Documents
+    dest: /home/{{ username }}/Documents
+    state: link
+
+- name: Link ~/shared/music to ~/Music
+  file:
+    src: /shared/music
+    dest: /home/{{ username }}/Music
+    state: link
