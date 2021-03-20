@@ -1,6 +1,6 @@
 ---
 # This playbook provisions my workstation
-- hosts: localhost
+- hosts: local
   vars:
     - profile: home
     - username: krj
@@ -18,5 +18,5 @@
     - printing
     - ruby
     - steam
-    - syncthing
     - elixir
+    - home_network
