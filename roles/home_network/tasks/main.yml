@@ -1,0 +1,49 @@
+---
+- name: Install required packages for home network mounts
+  package:
+    name:
+      - fuse-afp
+    state: present
+  become: yes
+
+- name: Ensure /shared
+  file:
+    path: /shared
+    owner: root
+    group: "{{ username }}"
+    mode: 0775
+    state: directory
+  become: yes
+
+- name: Ensure ~/home-docs
+  file:
+    path: /home/{{ username }}/home-docs
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0770
+    state: directory
+
+- name: Ensure /shared in /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^nasty.local.muumu.us:\/media'
+    line: 'nasty.local.muumu.us:/media	/shared	nfs	defaults	0 0'
+  become: yes
+
+- name: Ensure ~/home-docs in /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^afpfs'
+    line: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32633063663338333465386464383263363337343266303233663161653431393333393362356631
+          3531663330653234303039363931333061313239633137320a386538656531323665343263616235
+          64373465386331333061643531376464633638633536306266613431313335323837326239646466
+          3939306234633561320a636437613832353830366435303430306464393536313034653864666138
+          34326333363238613437653738396662666465316465393866616636666139323431646163356136
+          66326162316239396537643135663463633830356138303865646535373366353336373265393337
+          37353832333532343933626430633763613661376331643262306632383761626366633031643132
+          35666563663837666534393466313633636164356465306133373833336131306437363834363666
+          34663333373834663131306532323931663035373639656134623066643364633638663536323635
+          6365363530376637346533663334326331333532663836363161
+  become: yes
