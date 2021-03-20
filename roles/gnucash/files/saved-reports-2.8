@@ -1,4 +1,62 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Options for saved report "401(k) contributions, yearly", based on template "8758ba23984c40dea5527f5f0ca2779e"
+(let ()
+  (define (options-gen)
+    (let
+         (
+           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
+           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
+         )
+; Section: Commodities
+
+
+; Section: Accounts
+
+(let ((option (gnc:lookup-option options
+                                 "Accounts"
+                                 "Accounts")))
+  ((lambda (o) (if o (gnc:option-set-value o '("e46e63ae32032446c8a1ab107e5fc117" "f84e95f282d79dbf2f94b664a8b6abb1")))) option))
+
+
+; Section: Entries
+
+
+; Section: Display
+
+
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "End Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-cal-year)))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Start Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-cal-year)))) option))
+
+
+      options
+    )
+  )
+  (gnc:define-report 
+    'version 1
+    'name "401(k) contributions, yearly"
+    'report-guid "7cce2853f2bc4d56a77a02e34de14dc5"
+    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
+    'options-generator options-gen
+    'menu-path (list gnc:menuname-custom)
+    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Options for saved report "Portfolio - Cryptocurrency", based on template "21d7cfc59fc74f22887596ebde7e462d"
 (let ()
   (define (options-gen)
@@ -7,24 +65,6 @@
            (options (gnc:report-template-new-options/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio"))
            (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
          )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Cryptocurrency Portfolio"))) option))
-
-
 ; Section: Accounts
 
 (let ((option (gnc:lookup-option options
@@ -51,10 +91,28 @@
   ((lambda (o) (if o (gnc:option-set-value o #f))) option))
 
 
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Cryptocurrency Portfolio"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
+
+
       options
     )
   )
-  (gnc:define-report
+  (gnc:define-report 
     'version 1
     'name "Portfolio - Cryptocurrency"
     'report-guid "eb330f2525614bab91071704666c737b"
@@ -62,136 +120,6 @@
     'options-generator options-gen
     'menu-path (list gnc:menuname-custom)
     'renderer (gnc:report-template-renderer/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio")
-  )
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "Blackhawk Income, yearly", based on template "8758ba23984c40dea5527f5f0ca2779e"
-(let ()
-  (define (options-gen)
-    (let
-         (
-           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
-           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
-         )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report Title")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-cal-year)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-cal-year)))) option))
-
-
-; Section: Accounts
-
-(let ((option (gnc:lookup-option options
-                                 "Accounts"
-                                 "Accounts")))
-  ((lambda (o) (if o (gnc:option-set-value o '("24073354f52143a1bbea70e4ad3171f1" "3c64f2d50f71fd6a16cc87b7a3909576")))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Accounts"
-                                 "Levels of Subaccounts")))
-  ((lambda (o) (if o (gnc:option-set-value o 'all))) option))
-
-
-; Section: Display
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Display in standard, income first, order")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Include accounts with zero total balances")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Parent account balances")))
-  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
-
-
-; Section: Entries
-
-
-; Section: Commodities
-
-
-      options
-    )
-  )
-  (gnc:define-report
-    'version 1
-    'name "Blackhawk Income, yearly"
-    'report-guid "34bbebdde8994ecf9d7418ec6bb4a984"
-    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
-    'options-generator options-gen
-    'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
-  )
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "Net Worth Over Time", based on template "d8b63264186b11e19038001558291366"
-(let ()
-  (define (options-gen)
-    (let
-         (
-           (options (gnc:report-template-new-options/report-guid "d8b63264186b11e19038001558291366" "Net Worth Linechart"))
-           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
-         )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(absolute . 1436932800)))) option))
-
-
-; Section: Accounts
-
-
-; Section: Display
-
-
-      options
-    )
-  )
-  (gnc:define-report
-    'version 1
-    'name "Net Worth Over Time"
-    'report-guid "32317a6482954252a9886daf1e5097f4"
-    'parent-type "d8b63264186b11e19038001558291366"
-    'options-generator options-gen
-    'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "d8b63264186b11e19038001558291366" "Net Worth Linechart")
   )
 )
 
@@ -204,24 +132,6 @@
            (options (gnc:report-template-new-options/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio"))
            (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
          )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "JP Morgan 401(k)"))) option))
-
-
 ; Section: Accounts
 
 (let ((option (gnc:lookup-option options
@@ -248,10 +158,28 @@
   ((lambda (o) (if o (gnc:option-set-value o #f))) option))
 
 
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "JP Morgan 401(k)"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
+
+
       options
     )
   )
-  (gnc:define-report
+  (gnc:define-report 
     'version 1
     'name "Portfolio - JP Morgan 401(k)"
     'report-guid "449388ec40ce40e8b723bcf2cdaf35c1"
@@ -263,252 +191,44 @@
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "Portfolio - Vanguard Brokerage", based on template "21d7cfc59fc74f22887596ebde7e462d"
+;; Options for saved report "Net Worth Over Time", based on template "d8b63264186b11e19038001558291366"
 (let ()
   (define (options-gen)
     (let
          (
-           (options (gnc:report-template-new-options/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio"))
+           (options (gnc:report-template-new-options/report-guid "d8b63264186b11e19038001558291366" "Net Worth Linechart"))
            (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
          )
+; Section: Accounts
+
+
+; Section: Display
+
+
 ; Section: General
 
 (let ((option (gnc:lookup-option options
                                  "General"
-                                 "Date")))
+                                 "End Date")))
   ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
 
 (let ((option (gnc:lookup-option options
                                  "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Vanguard Brokerage"))) option))
-
-
-; Section: Accounts
-
-(let ((option (gnc:lookup-option options
-                                 "Accounts"
-                                 "Accounts")))
-  ((lambda (o) (if o (gnc:option-set-value o '("0738b8769a907b3bda34762387ef9019" "d04d73463228006ebfc5ec043e836914" "24fadc1c8473689cfb7c570e76036d8d")))) option))
-
-
-; Section: Display
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Show ticker symbols")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Share decimal places")))
-  ((lambda (o) (if o (gnc:option-set-value o 3.0))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Show listings")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-
-      options
-    )
-  )
-  (gnc:define-report
-    'version 1
-    'name "Portfolio - Vanguard Brokerage"
-    'report-guid "77e9ec5707a34a4a80d1176e47fe84b2"
-    'parent-type "21d7cfc59fc74f22887596ebde7e462d"
-    'options-generator options-gen
-    'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio")
-  )
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "401(k) contributions, yearly", based on template "8758ba23984c40dea5527f5f0ca2779e"
-(let ()
-  (define (options-gen)
-    (let
-         (
-           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
-           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
-         )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-cal-year)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
                                  "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-cal-year)))) option))
-
-
-; Section: Accounts
-
-(let ((option (gnc:lookup-option options
-                                 "Accounts"
-                                 "Accounts")))
-  ((lambda (o) (if o (gnc:option-set-value o '("e46e63ae32032446c8a1ab107e5fc117" "f84e95f282d79dbf2f94b664a8b6abb1")))) option))
-
-
-; Section: Display
-
-
-; Section: Entries
-
-
-; Section: Commodities
+  ((lambda (o) (if o (gnc:option-set-value o '(absolute . 1436932800)))) option))
 
 
       options
     )
   )
-  (gnc:define-report
+  (gnc:define-report 
     'version 1
-    'name "401(k) contributions, yearly"
-    'report-guid "7cce2853f2bc4d56a77a02e34de14dc5"
-    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
+    'name "Net Worth Over Time"
+    'report-guid "32317a6482954252a9886daf1e5097f4"
+    'parent-type "d8b63264186b11e19038001558291366"
     'options-generator options-gen
     'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
-  )
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "Income/Expense Chart over the year", based on template "80769921e87943adade887b9835a7685"
-(let ()
-  (define (options-gen)
-    (let
-         (
-           (options (gnc:report-template-new-options/report-guid "80769921e87943adade887b9835a7685" "Income/Expense Chart"))
-           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
-         )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-cal-year)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-cal-year)))) option))
-
-
-; Section: Accounts
-
-
-; Section: Display
-
-
-      options
-    )
-  )
-  (gnc:define-report
-    'version 1
-    'name "Income/Expense Chart over the year"
-    'report-guid "3bed08a9cdbb400981557fe962c7bc98"
-    'parent-type "80769921e87943adade887b9835a7685"
-    'options-generator options-gen
-    'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "80769921e87943adade887b9835a7685" "Income/Expense Chart")
-  )
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Options for saved report "Income and Expense - Previous Month", based on template "8758ba23984c40dea5527f5f0ca2779e"
-(let ()
-  (define (options-gen)
-    (let
-         (
-           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
-           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
-         )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report Title")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - Previous Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - Previous Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-prev-month)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-prev-month)))) option))
-
-
-; Section: Accounts
-
-(let ((option (gnc:lookup-option options
-                                 "Accounts"
-                                 "Accounts")))
-  ((lambda (o) (if o (gnc:option-set-value o '("5c36cc686fe1e45d1d7a51cac71e8f01" "d3e312493ea78a285fa0850c32c7337a" "0ced9cf4d573d6e16b52d8a4a1026bf7" "554650457c91e6246abd3b2531d86038" "bf22a2791d45f220e084f6803a3d3538" "92ddd5157af9fba29fc290e88acf523f" "834dd11932c898aea61f73ab91a5e282" "f1f580ad6d6c873ad4e120ac90566399" "1ef211f60f44985cdbe2bb01beb6fa99" "619053187e9b93dd8b9a9b9637e4b194" "dd7b45a6c2b393fb11edcbc2d8c0fbb5" "2eda01a0a37bebf7a4282d2ad4d79acf" "1ca59a7abd7d4779497da139d8c1678c" "91782f4e7e0483ddd17f2b339681231d" "e85c1e034b0a4b8bbc9187565025cf7f" "1229f7a31da87495fdc564c9d770dfe5" "825c90391f6749dde98870b60a2ed0f8" "6ef930bd6eb04358aad0173a66603f9b" "e86daa681df53943011dd3ae0440d2f0" "0c93223332d0e6d5146bd86da407bcbf" "a11512274470489aa24f981d298edeed" "97dbfdf1b77e41b0aa68c88801af3a5f" "47c6df069db2415c9aa89ccabd7b3d64" "5a07bccf165c285f68f2823b97b1677d" "3fc59540ba1b470d980ccdf8e88b1dd9" "05088d375fc7487d9080fc432175833f" "94cc9be2ee8e48cc92f9fffabe483578" "4792aa4004261748323da4ca2f7cc859" "0b3f5d4cf4d027d9e7e9ec156512ec36" "10b583e606cbce4e007be7ebbd7987b2" "cef612a4c634f69c62f7e731081838ea" "2387110ec889da87fa5b55355e031ffe" "c2b39b7b2b333e97a6256b25e08da225" "93393fab219dfc8a37e4a432ed1d9082" "59f98a9425eb15354cd64c79892a0be3" "a80c8d4b8374bfa8637d737d0641db87" "daf40e3889ef411c85f3815e233551b8" "fae595b4ce16a0c75f0fdd9a2f023981" "60724c5e1f5b5a32d5d53832f26e9df1" "c32f067ce8df4121987cee42d0daf861" "2f2c3e154be348c583dcb8a5f8e67bc7" "a9289afce9343b87d23e8d43cf809977" "251fe4e13137e39d8f853fe35d8a0575" "7d2e1d4814838a5f217f90a42a5b3aaf" "adf4109aff521fb8dd2867973c9a7265" "dacb9277657e9f2d15483b3632b422ff" "8868d4eaeef22b720379290c53e48039" "a5a04807eaa51daa46f2d5e2c1c90b6a" "df608a580d2126d7c6aa261c891b4aac" "6636d61353d3ca9a29d2abc95bebbdb0" "ae6bf75ba5e6aa09809723794e639993" "5137fcdaba660eb5bf8bc9772c50ada9" "9c69bf31c493299e35bc56ddbd853330" "976257bbcec4abdeaa97530e8ec3cd83" "8a3c23a23de44b48be09716f8bc4f5e0" "3d47719653acd959bfa5113b0be3bd4d" "23a44c36253c8ab3eb7b39db62f4a25e" "38526e1573571da6e5edc0a6807b2010" "820e31147522663acfc3b916d6d0beb4" "4fc5d7cb51bc68e00e9993bfbfe84acc" "3435e7099d424d7e9a93503b423d4901" "de407e3e8dd34c338f6a1c3e6241cf09" "d62b90aca4dc00796ececcf8a0caa2e5" "116e88038b92083e38dc73197cf12cec" "9cd2e0c709abb246d84be4c1fd486ece" "c7ecf53c05e74a8d4c62a46d7367edd4" "b2eb2035d525c9ff244b7c54748099f0" "378c3cb3d3fe490bb2f325363a1e53f5" "24073354f52143a1bbea70e4ad3171f1" "8c7d590c0a7f6f744de690608ce9e537" "23d972b3310fd5e66f437c41aa4f3117" "735c2b002429dad1e5fa3f7b014c2da7" "0377e19ba914ad08ae222cf46e363faa" "6e8bf13072a93b960985564b80b6254b" "11cc80f896f6df50e15485912f022dd9" "225e2c8b621ddb634a04f423aa873786" "b4195f656a15dc05fe4d06a700a14a74" "5a207e6f46f3a0fcd7b3355887817ea4" "7698799148c6faa71e67f348694901a3" "0ce3a7692ef77acfb2bc903083abb421" "7e3703933c62f99756e86862d72643cc" "a03eb00a165ce0faee783c29adbfd8da" "3c64f2d50f71fd6a16cc87b7a3909576" "675288b20e7041d9aba11cece2409aad" "c637e21f449c38b5ca594c19ea7d0726" "d33419e32b763c369a3f2f46910e187a" "04431b7bc9bf43b3a111fb262366eb0f")))) option))
-
-
-; Section: Display
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Display in standard, income first, order")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Include accounts with zero total balances")))
-  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Parent account balances")))
-  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
-
-
-; Section: Entries
-
-
-; Section: Commodities
-
-
-      options
-    )
-  )
-  (gnc:define-report
-    'version 1
-    'name "Income and Expense - Previous Month"
-    'report-guid "f48201aab5194a349f8c37587f2ed079"
-    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
-    'options-generator options-gen
-    'menu-path (list gnc:menuname-custom)
-    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
+    'renderer (gnc:report-template-renderer/report-guid "d8b63264186b11e19038001558291366" "Net Worth Linechart")
   )
 )
 
@@ -521,24 +241,6 @@
            (options (gnc:report-template-new-options/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio"))
            (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
          )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Vanguard Roth IRA"))) option))
-
-
 ; Section: Accounts
 
 (let ((option (gnc:lookup-option options
@@ -565,10 +267,28 @@
   ((lambda (o) (if o (gnc:option-set-value o #f))) option))
 
 
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Vanguard Roth IRA"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
+
+
       options
     )
   )
-  (gnc:define-report
+  (gnc:define-report 
     'version 1
     'name "Portfolio - Vanguard Roth IRA"
     'report-guid "a2b967cfabe5455ebf5e09948819dfaf"
@@ -588,32 +308,7 @@
            (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
            (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
          )
-; Section: General
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report Title")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Stylesheet")))
-  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Report name")))
-  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "End Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-this-month)))) option))
-
-(let ((option (gnc:lookup-option options
-                                 "General"
-                                 "Start Date")))
-  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-this-month)))) option))
+; Section: Commodities
 
 
 ; Section: Accounts
@@ -621,10 +316,18 @@
 (let ((option (gnc:lookup-option options
                                  "Accounts"
                                  "Accounts")))
-  ((lambda (o) (if o (gnc:option-set-value o '("5c36cc686fe1e45d1d7a51cac71e8f01" "d3e312493ea78a285fa0850c32c7337a" "0ced9cf4d573d6e16b52d8a4a1026bf7" "554650457c91e6246abd3b2531d86038" "bf22a2791d45f220e084f6803a3d3538" "92ddd5157af9fba29fc290e88acf523f" "834dd11932c898aea61f73ab91a5e282" "f1f580ad6d6c873ad4e120ac90566399" "1ef211f60f44985cdbe2bb01beb6fa99" "619053187e9b93dd8b9a9b9637e4b194" "dd7b45a6c2b393fb11edcbc2d8c0fbb5" "2eda01a0a37bebf7a4282d2ad4d79acf" "1ca59a7abd7d4779497da139d8c1678c" "91782f4e7e0483ddd17f2b339681231d" "e85c1e034b0a4b8bbc9187565025cf7f" "1229f7a31da87495fdc564c9d770dfe5" "825c90391f6749dde98870b60a2ed0f8" "6ef930bd6eb04358aad0173a66603f9b" "e86daa681df53943011dd3ae0440d2f0" "0c93223332d0e6d5146bd86da407bcbf" "a11512274470489aa24f981d298edeed" "97dbfdf1b77e41b0aa68c88801af3a5f" "47c6df069db2415c9aa89ccabd7b3d64" "5a07bccf165c285f68f2823b97b1677d" "3fc59540ba1b470d980ccdf8e88b1dd9" "05088d375fc7487d9080fc432175833f" "94cc9be2ee8e48cc92f9fffabe483578" "4792aa4004261748323da4ca2f7cc859" "0b3f5d4cf4d027d9e7e9ec156512ec36" "10b583e606cbce4e007be7ebbd7987b2" "cef612a4c634f69c62f7e731081838ea" "2387110ec889da87fa5b55355e031ffe" "c2b39b7b2b333e97a6256b25e08da225" "93393fab219dfc8a37e4a432ed1d9082" "59f98a9425eb15354cd64c79892a0be3" "a80c8d4b8374bfa8637d737d0641db87" "daf40e3889ef411c85f3815e233551b8" "fae595b4ce16a0c75f0fdd9a2f023981" "60724c5e1f5b5a32d5d53832f26e9df1" "c32f067ce8df4121987cee42d0daf861" "2f2c3e154be348c583dcb8a5f8e67bc7" "a9289afce9343b87d23e8d43cf809977" "251fe4e13137e39d8f853fe35d8a0575" "7d2e1d4814838a5f217f90a42a5b3aaf" "adf4109aff521fb8dd2867973c9a7265" "dacb9277657e9f2d15483b3632b422ff" "8868d4eaeef22b720379290c53e48039" "2f6cba8295222e7760d7cda0169d7837" "a5a04807eaa51daa46f2d5e2c1c90b6a" "df608a580d2126d7c6aa261c891b4aac" "6636d61353d3ca9a29d2abc95bebbdb0" "ae6bf75ba5e6aa09809723794e639993" "5137fcdaba660eb5bf8bc9772c50ada9" "9c69bf31c493299e35bc56ddbd853330" "976257bbcec4abdeaa97530e8ec3cd83" "8a3c23a23de44b48be09716f8bc4f5e0" "3d47719653acd959bfa5113b0be3bd4d" "23a44c36253c8ab3eb7b39db62f4a25e" "38526e1573571da6e5edc0a6807b2010" "820e31147522663acfc3b916d6d0beb4" "4fc5d7cb51bc68e00e9993bfbfe84acc" "3435e7099d424d7e9a93503b423d4901" "de407e3e8dd34c338f6a1c3e6241cf09" "d62b90aca4dc00796ececcf8a0caa2e5" "116e88038b92083e38dc73197cf12cec" "9cd2e0c709abb246d84be4c1fd486ece" "c7ecf53c05e74a8d4c62a46d7367edd4" "b2eb2035d525c9ff244b7c54748099f0" "378c3cb3d3fe490bb2f325363a1e53f5" "24073354f52143a1bbea70e4ad3171f1" "8c7d590c0a7f6f744de690608ce9e537" "23d972b3310fd5e66f437c41aa4f3117" "735c2b002429dad1e5fa3f7b014c2da7" "0377e19ba914ad08ae222cf46e363faa" "6e8bf13072a93b960985564b80b6254b" "11cc80f896f6df50e15485912f022dd9" "225e2c8b621ddb634a04f423aa873786" "b4195f656a15dc05fe4d06a700a14a74" "5a207e6f46f3a0fcd7b3355887817ea4" "7698799148c6faa71e67f348694901a3" "0ce3a7692ef77acfb2bc903083abb421" "7e3703933c62f99756e86862d72643cc" "a03eb00a165ce0faee783c29adbfd8da" "3c64f2d50f71fd6a16cc87b7a3909576" "675288b20e7041d9aba11cece2409aad" "c637e21f449c38b5ca594c19ea7d0726" "d33419e32b763c369a3f2f46910e187a" "04431b7bc9bf43b3a111fb262366eb0f")))) option))
+  ((lambda (o) (if o (gnc:option-set-value o '("5c36cc686fe1e45d1d7a51cac71e8f01" "d3e312493ea78a285fa0850c32c7337a" "0ced9cf4d573d6e16b52d8a4a1026bf7" "554650457c91e6246abd3b2531d86038" "bf22a2791d45f220e084f6803a3d3538" "92ddd5157af9fba29fc290e88acf523f" "834dd11932c898aea61f73ab91a5e282" "f1f580ad6d6c873ad4e120ac90566399" "1ef211f60f44985cdbe2bb01beb6fa99" "619053187e9b93dd8b9a9b9637e4b194" "dd7b45a6c2b393fb11edcbc2d8c0fbb5" "2eda01a0a37bebf7a4282d2ad4d79acf" "1ca59a7abd7d4779497da139d8c1678c" "91782f4e7e0483ddd17f2b339681231d" "e85c1e034b0a4b8bbc9187565025cf7f" "1229f7a31da87495fdc564c9d770dfe5" "825c90391f6749dde98870b60a2ed0f8" "6ef930bd6eb04358aad0173a66603f9b" "e86daa681df53943011dd3ae0440d2f0" "0c93223332d0e6d5146bd86da407bcbf" "a11512274470489aa24f981d298edeed" "97dbfdf1b77e41b0aa68c88801af3a5f" "47c6df069db2415c9aa89ccabd7b3d64" "5a07bccf165c285f68f2823b97b1677d" "3fc59540ba1b470d980ccdf8e88b1dd9" "05088d375fc7487d9080fc432175833f" "94cc9be2ee8e48cc92f9fffabe483578" "4792aa4004261748323da4ca2f7cc859" "0b3f5d4cf4d027d9e7e9ec156512ec36" "10b583e606cbce4e007be7ebbd7987b2" "cef612a4c634f69c62f7e731081838ea" "2387110ec889da87fa5b55355e031ffe" "c2b39b7b2b333e97a6256b25e08da225" "93393fab219dfc8a37e4a432ed1d9082" "59f98a9425eb15354cd64c79892a0be3" "a80c8d4b8374bfa8637d737d0641db87" "daf40e3889ef411c85f3815e233551b8" "fae595b4ce16a0c75f0fdd9a2f023981" "60724c5e1f5b5a32d5d53832f26e9df1" "c32f067ce8df4121987cee42d0daf861" "2f2c3e154be348c583dcb8a5f8e67bc7" "a9289afce9343b87d23e8d43cf809977" "251fe4e13137e39d8f853fe35d8a0575" "7d2e1d4814838a5f217f90a42a5b3aaf" "adf4109aff521fb8dd2867973c9a7265" "dacb9277657e9f2d15483b3632b422ff" "8868d4eaeef22b720379290c53e48039" "2f6cba8295222e7760d7cda0169d7837" "a5a04807eaa51daa46f2d5e2c1c90b6a" "df608a580d2126d7c6aa261c891b4aac" "6636d61353d3ca9a29d2abc95bebbdb0" "ae6bf75ba5e6aa09809723794e639993" "5137fcdaba660eb5bf8bc9772c50ada9" "9c69bf31c493299e35bc56ddbd853330" "976257bbcec4abdeaa97530e8ec3cd83" "8a3c23a23de44b48be09716f8bc4f5e0" "3d47719653acd959bfa5113b0be3bd4d" "23a44c36253c8ab3eb7b39db62f4a25e" "38526e1573571da6e5edc0a6807b2010" "820e31147522663acfc3b916d6d0beb4" "4fc5d7cb51bc68e00e9993bfbfe84acc" "d62b90aca4dc00796ececcf8a0caa2e5" "116e88038b92083e38dc73197cf12cec" "9cd2e0c709abb246d84be4c1fd486ece" "c7ecf53c05e74a8d4c62a46d7367edd4" "b2eb2035d525c9ff244b7c54748099f0" "378c3cb3d3fe490bb2f325363a1e53f5" "24073354f52143a1bbea70e4ad3171f1" "26dc4a8ed2a74944b6cfbaf148afe599" "8c7d590c0a7f6f744de690608ce9e537" "23d972b3310fd5e66f437c41aa4f3117" "735c2b002429dad1e5fa3f7b014c2da7" "0377e19ba914ad08ae222cf46e363faa" "6e8bf13072a93b960985564b80b6254b" "acf76ee3d51b401f82012e535e12f058" "11cc80f896f6df50e15485912f022dd9" "225e2c8b621ddb634a04f423aa873786" "b4195f656a15dc05fe4d06a700a14a74" "5a207e6f46f3a0fcd7b3355887817ea4" "7698799148c6faa71e67f348694901a3" "0ce3a7692ef77acfb2bc903083abb421" "7e3703933c62f99756e86862d72643cc" "a03eb00a165ce0faee783c29adbfd8da" "3c64f2d50f71fd6a16cc87b7a3909576" "675288b20e7041d9aba11cece2409aad" "c637e21f449c38b5ca594c19ea7d0726" "bf9524b1289f49988c7d52eabe41215d" "d33419e32b763c369a3f2f46910e187a" "04431b7bc9bf43b3a111fb262366eb0f")))) option))
+
+
+; Section: Entries
 
 
 ; Section: Display
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Parent account balances")))
+  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
 
 (let ((option (gnc:lookup-option options
                                  "Display"
@@ -636,22 +339,39 @@
                                  "Include accounts with zero total balances")))
   ((lambda (o) (if o (gnc:option-set-value o #f))) option))
 
+
+; Section: General
+
 (let ((option (gnc:lookup-option options
-                                 "Display"
-                                 "Parent account balances")))
-  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
 
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "End Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-this-month)))) option))
 
-; Section: Entries
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
 
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report Title")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
 
-; Section: Commodities
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Start Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-this-month)))) option))
 
 
       options
     )
   )
-  (gnc:define-report
+  (gnc:define-report 
     'version 1
     'name "Income and Expense - This Month"
     'report-guid "762a8372368840e1a15ded175abfcab4"
@@ -661,3 +381,284 @@
     'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
   )
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Options for saved report "Blackhawk Income, yearly", based on template "8758ba23984c40dea5527f5f0ca2779e"
+(let ()
+  (define (options-gen)
+    (let
+         (
+           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
+           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
+         )
+; Section: Commodities
+
+
+; Section: Accounts
+
+(let ((option (gnc:lookup-option options
+                                 "Accounts"
+                                 "Accounts")))
+  ((lambda (o) (if o (gnc:option-set-value o '("24073354f52143a1bbea70e4ad3171f1" "3c64f2d50f71fd6a16cc87b7a3909576")))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Accounts"
+                                 "Levels of Subaccounts")))
+  ((lambda (o) (if o (gnc:option-set-value o 'all))) option))
+
+
+; Section: Entries
+
+
+; Section: Display
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Parent account balances")))
+  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Display in standard, income first, order")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Include accounts with zero total balances")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "End Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-cal-year)))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report Title")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - This Month"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Start Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-cal-year)))) option))
+
+
+      options
+    )
+  )
+  (gnc:define-report 
+    'version 1
+    'name "Blackhawk Income, yearly"
+    'report-guid "34bbebdde8994ecf9d7418ec6bb4a984"
+    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
+    'options-generator options-gen
+    'menu-path (list gnc:menuname-custom)
+    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Options for saved report "Portfolio - Vanguard Brokerage", based on template "21d7cfc59fc74f22887596ebde7e462d"
+(let ()
+  (define (options-gen)
+    (let
+         (
+           (options (gnc:report-template-new-options/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio"))
+           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
+         )
+; Section: Accounts
+
+(let ((option (gnc:lookup-option options
+                                 "Accounts"
+                                 "Accounts")))
+  ((lambda (o) (if o (gnc:option-set-value o '("0738b8769a907b3bda34762387ef9019" "d04d73463228006ebfc5ec043e836914" "24fadc1c8473689cfb7c570e76036d8d")))) option))
+
+
+; Section: Display
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Show ticker symbols")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Share decimal places")))
+  ((lambda (o) (if o (gnc:option-set-value o 3.0))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Show listings")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Easy))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Vanguard Brokerage"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
+
+
+      options
+    )
+  )
+  (gnc:define-report 
+    'version 1
+    'name "Portfolio - Vanguard Brokerage"
+    'report-guid "77e9ec5707a34a4a80d1176e47fe84b2"
+    'parent-type "21d7cfc59fc74f22887596ebde7e462d"
+    'options-generator options-gen
+    'menu-path (list gnc:menuname-custom)
+    'renderer (gnc:report-template-renderer/report-guid "21d7cfc59fc74f22887596ebde7e462d" "Advanced Portfolio")
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Options for saved report "Income/Expense Chart over the year", based on template "80769921e87943adade887b9835a7685"
+(let ()
+  (define (options-gen)
+    (let
+         (
+           (options (gnc:report-template-new-options/report-guid "80769921e87943adade887b9835a7685" "Income/Expense Chart"))
+           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
+         )
+; Section: Accounts
+
+
+; Section: Display
+
+
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "End Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . today)))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Start Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-prev-year)))) option))
+
+
+      options
+    )
+  )
+  (gnc:define-report 
+    'version 1
+    'name "Income/Expense Chart over the year"
+    'report-guid "3bed08a9cdbb400981557fe962c7bc98"
+    'parent-type "80769921e87943adade887b9835a7685"
+    'options-generator options-gen
+    'menu-path (list gnc:menuname-custom)
+    'renderer (gnc:report-template-renderer/report-guid "80769921e87943adade887b9835a7685" "Income/Expense Chart")
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Options for saved report "Income and Expense - Previous Month", based on template "8758ba23984c40dea5527f5f0ca2779e"
+(let ()
+  (define (options-gen)
+    (let
+         (
+           (options (gnc:report-template-new-options/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss"))
+           (new-embedded-report-ids '()) ;; only used with Multicolumn View Reports
+         )
+; Section: Commodities
+
+
+; Section: Accounts
+
+(let ((option (gnc:lookup-option options
+                                 "Accounts"
+                                 "Accounts")))
+  ((lambda (o) (if o (gnc:option-set-value o '("5c36cc686fe1e45d1d7a51cac71e8f01" "d3e312493ea78a285fa0850c32c7337a" "0ced9cf4d573d6e16b52d8a4a1026bf7" "554650457c91e6246abd3b2531d86038" "bf22a2791d45f220e084f6803a3d3538" "92ddd5157af9fba29fc290e88acf523f" "834dd11932c898aea61f73ab91a5e282" "f1f580ad6d6c873ad4e120ac90566399" "1ef211f60f44985cdbe2bb01beb6fa99" "619053187e9b93dd8b9a9b9637e4b194" "dd7b45a6c2b393fb11edcbc2d8c0fbb5" "2eda01a0a37bebf7a4282d2ad4d79acf" "1ca59a7abd7d4779497da139d8c1678c" "91782f4e7e0483ddd17f2b339681231d" "e85c1e034b0a4b8bbc9187565025cf7f" "1229f7a31da87495fdc564c9d770dfe5" "825c90391f6749dde98870b60a2ed0f8" "6ef930bd6eb04358aad0173a66603f9b" "e86daa681df53943011dd3ae0440d2f0" "0c93223332d0e6d5146bd86da407bcbf" "a11512274470489aa24f981d298edeed" "97dbfdf1b77e41b0aa68c88801af3a5f" "47c6df069db2415c9aa89ccabd7b3d64" "5a07bccf165c285f68f2823b97b1677d" "3fc59540ba1b470d980ccdf8e88b1dd9" "05088d375fc7487d9080fc432175833f" "94cc9be2ee8e48cc92f9fffabe483578" "4792aa4004261748323da4ca2f7cc859" "0b3f5d4cf4d027d9e7e9ec156512ec36" "10b583e606cbce4e007be7ebbd7987b2" "cef612a4c634f69c62f7e731081838ea" "2387110ec889da87fa5b55355e031ffe" "c2b39b7b2b333e97a6256b25e08da225" "93393fab219dfc8a37e4a432ed1d9082" "59f98a9425eb15354cd64c79892a0be3" "a80c8d4b8374bfa8637d737d0641db87" "daf40e3889ef411c85f3815e233551b8" "fae595b4ce16a0c75f0fdd9a2f023981" "60724c5e1f5b5a32d5d53832f26e9df1" "c32f067ce8df4121987cee42d0daf861" "2f2c3e154be348c583dcb8a5f8e67bc7" "a9289afce9343b87d23e8d43cf809977" "251fe4e13137e39d8f853fe35d8a0575" "7d2e1d4814838a5f217f90a42a5b3aaf" "adf4109aff521fb8dd2867973c9a7265" "dacb9277657e9f2d15483b3632b422ff" "8868d4eaeef22b720379290c53e48039" "a5a04807eaa51daa46f2d5e2c1c90b6a" "df608a580d2126d7c6aa261c891b4aac" "6636d61353d3ca9a29d2abc95bebbdb0" "ae6bf75ba5e6aa09809723794e639993" "5137fcdaba660eb5bf8bc9772c50ada9" "9c69bf31c493299e35bc56ddbd853330" "976257bbcec4abdeaa97530e8ec3cd83" "8a3c23a23de44b48be09716f8bc4f5e0" "3d47719653acd959bfa5113b0be3bd4d" "23a44c36253c8ab3eb7b39db62f4a25e" "38526e1573571da6e5edc0a6807b2010" "820e31147522663acfc3b916d6d0beb4" "4fc5d7cb51bc68e00e9993bfbfe84acc" "d62b90aca4dc00796ececcf8a0caa2e5" "116e88038b92083e38dc73197cf12cec" "9cd2e0c709abb246d84be4c1fd486ece" "c7ecf53c05e74a8d4c62a46d7367edd4" "b2eb2035d525c9ff244b7c54748099f0" "378c3cb3d3fe490bb2f325363a1e53f5" "24073354f52143a1bbea70e4ad3171f1" "26dc4a8ed2a74944b6cfbaf148afe599" "8c7d590c0a7f6f744de690608ce9e537" "23d972b3310fd5e66f437c41aa4f3117" "735c2b002429dad1e5fa3f7b014c2da7" "0377e19ba914ad08ae222cf46e363faa" "6e8bf13072a93b960985564b80b6254b" "11cc80f896f6df50e15485912f022dd9" "225e2c8b621ddb634a04f423aa873786" "b4195f656a15dc05fe4d06a700a14a74" "5a207e6f46f3a0fcd7b3355887817ea4" "7698799148c6faa71e67f348694901a3" "0ce3a7692ef77acfb2bc903083abb421" "7e3703933c62f99756e86862d72643cc" "a03eb00a165ce0faee783c29adbfd8da" "3c64f2d50f71fd6a16cc87b7a3909576" "675288b20e7041d9aba11cece2409aad" "c637e21f449c38b5ca594c19ea7d0726" "bf9524b1289f49988c7d52eabe41215d" "d33419e32b763c369a3f2f46910e187a" "04431b7bc9bf43b3a111fb262366eb0f")))) option))
+
+
+; Section: Entries
+
+
+; Section: Display
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Parent account balances")))
+  ((lambda (o) (if o (gnc:option-set-value o 'omit-bal))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Display in standard, income first, order")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "Display"
+                                 "Include accounts with zero total balances")))
+  ((lambda (o) (if o (gnc:option-set-value o #f))) option))
+
+
+; Section: General
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Stylesheet")))
+  ((lambda (o) (if o (gnc:option-set-value o 'Technicolor))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "End Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . end-prev-month)))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report name")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - Previous Month"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Report Title")))
+  ((lambda (o) (if o (gnc:option-set-value o "Income and Expense - Previous Month"))) option))
+
+(let ((option (gnc:lookup-option options
+                                 "General"
+                                 "Start Date")))
+  ((lambda (o) (if o (gnc:option-set-value o '(relative . start-prev-month)))) option))
+
+
+      options
+    )
+  )
+  (gnc:define-report 
+    'version 1
+    'name "Income and Expense - Previous Month"
+    'report-guid "f48201aab5194a349f8c37587f2ed079"
+    'parent-type "8758ba23984c40dea5527f5f0ca2779e"
+    'options-generator options-gen
+    'menu-path (list gnc:menuname-custom)
+    'renderer (gnc:report-template-renderer/report-guid "8758ba23984c40dea5527f5f0ca2779e" "Profit & Loss")
+  )
+)
+
