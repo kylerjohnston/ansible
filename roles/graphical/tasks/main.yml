@@ -17,13 +17,14 @@
       - adobe-source-code-pro-fonts
       - adobe-source-sans-pro-fonts
       - cmake # needed for emacs vterm
-      - fontawesome-fonts
-      - google-roboto-fonts
       - emacs
+      - fontawesome-fonts
       - ffmpeg
       - firefox
       - gimp
+      - google-roboto-fonts
       - gnome-tweaks
+      - libtool # also needed for emacs vterm
       - python3-psutil
       - tilix
     state: present
