@@ -1,7 +1,7 @@
 ---
 # This playbook provisions my personal laptop.
 
-- hosts: localhost
+- hosts: local
   vars:
     - profile: home
     - username: krj
@@ -24,5 +24,4 @@
     - steam
     - sysadmin_tools
     - docker
-    - syncthing
-    - elixir
+    - home_network
