@@ -15,13 +15,6 @@
   become: yes
   become_user: root
 
-- name: Update all packages
-  package:
-    name: '*'
-    state: latest
-  become: yes
-  become_user: root
-
 - name: Install common packages
   package:
     name:
