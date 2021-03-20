@@ -16,6 +16,7 @@
       - '@GNOME Desktop Environment'
       - adobe-source-code-pro-fonts
       - adobe-source-sans-pro-fonts
+      - cmake # needed for emacs vterm
       - fontawesome-fonts
       - google-roboto-fonts
       - emacs
