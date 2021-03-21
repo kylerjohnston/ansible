@@ -42,15 +42,18 @@
     src: /home/{{ username }}/home-docs/org
     dest: /home/{{ username }}/org
     state: link
+    force: yes
 
 - name: Link ~/home-docs/Documents to ~/Documents
   file:
     src: /home/{{ username }}/home-docs/Documents
     dest: /home/{{ username }}/Documents
     state: link
+    force: yes
 
 - name: Link ~/shared/music to ~/Music
   file:
     src: /shared/music
     dest: /home/{{ username }}/Music
     state: link
+    force: yes
