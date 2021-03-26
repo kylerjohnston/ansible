@@ -27,8 +27,10 @@
   lineinfile:
     path: /etc/fstab
     regexp: '^nasty.local.muumu.us:\/media'
-    line: 'nasty.local.muumu.us:/media	/shared	nfs	defaults	0 0'
+    line: 'nasty.local.muumu.us:/media	/shared	nfs	defaults,_netdev	0 0'
   become: yes
+  notify:
+    - Daemon reload
 
 - name: Ensure ~/home-docs in /etc/fstab
   lineinfile:
@@ -36,6 +38,8 @@
     regexp: '^afpfs'
     line: 'afpfs#afp://krj:{{ afpfs_password }}@nasty.local.muumu.us/Documents	/home/krj/home-docs	fuse	user=krj,group=krj,_netdev 0 0'
   become: yes
+  notify:
+    - Daemon reload
 
 - name: Link ~/home-docs/org to ~/org
   file:
