@@ -1,9 +1,0 @@
-[Unit]
-Description=Back up Gnucash register to S3
-
-[Service]
-Type=forking
-ExecStart=/home/{{ username }}/.local/bin/back2s3.sh
-
-[Install]
-WantedBy=default.target
