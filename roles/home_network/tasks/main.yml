@@ -41,3 +41,10 @@
   become: yes
   notify:
     - Daemon reload
+
+- name: Ensure afs shares removed from /etc/fstab
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^afpfs'
+    state: absent
+  become: yes
