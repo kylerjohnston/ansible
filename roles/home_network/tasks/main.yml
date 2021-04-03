@@ -1,9 +1,9 @@
 ---
-- name: Install required packages for home network mounts
+- name: Remove unused packages
   package:
     name:
       - fuse-afp
-    state: present
+    state: absent
   become: yes
 
 - name: Ensure /shared
@@ -22,6 +22,7 @@
     group: "{{ username }}"
     mode: 0770
     state: directory
+  become: yes
 
 - name: Ensure /shared in /etc/fstab
   lineinfile:
@@ -35,29 +36,8 @@
 - name: Ensure ~/home-docs in /etc/fstab
   lineinfile:
     path: /etc/fstab
-    regexp: '^afpfs'
-    line: 'afpfs#afp://krj:{{ afpfs_password }}@nasty.local.muumu.us/Documents	/home/krj/home-docs	fuse	user=krj,group=krj,_netdev 0 0'
+    regexp: '^nasty.local.muumu.us:\/Documents'
+    line: 'nasty.local.muumu.us:/Documents	/home/krj/home-docs	nfs	defaults,_netdev	0 0'
   become: yes
   notify:
     - Daemon reload
-
-- name: Link ~/home-docs/org to ~/org
-  file:
-    src: /home/{{ username }}/home-docs/org
-    dest: /home/{{ username }}/org
-    state: link
-    force: yes
-
-- name: Link ~/home-docs/Documents to ~/Documents
-  file:
-    src: /home/{{ username }}/home-docs/Documents
-    dest: /home/{{ username }}/Documents
-    state: link
-    force: yes
-
-- name: Link ~/shared/music to ~/Music
-  file:
-    src: /shared/music
-    dest: /home/{{ username }}/Music
-    state: link
-    force: yes
