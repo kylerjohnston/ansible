@@ -1,0 +1,31 @@
+- name: Add git user
+  user:
+    name: git
+    state: present
+  become: yes
+
+- name: Add pub key to authorized_keys for git user
+  authorized_key:
+    user: git
+    state: present
+    key: "{{ ssh_public_key }}"
+  become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Ensure repository directories
+  file:
+    path: /srv/git/{{ item }}.git
+    owner: git
+    group: git
+    mode: 0775
+    state: directory
+  become: yes
+  with_items: "{{ repos }}"
+
+- name: Ensure bare repos
+  command: git init --bare /srv/git/{{ item }}.git/
+  args:
+    creates: /srv/git/{{ item }}.git/HEAD
+  become: yes
+  become_user: git
+  with_items: "{{ repos }}"

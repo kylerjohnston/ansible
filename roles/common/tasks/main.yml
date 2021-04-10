@@ -1,7 +1,7 @@
 ---
 - name: Set hostname
   hostname:
-    name: "{{ hostname }}"
+    name: "{{ hostname | default(inventory_hostname)}}"
   become: yes
 
 - name: Install /etc/hosts
@@ -62,16 +62,13 @@
   become: yes
   become_user: root
 
-- name: ssh authorized keys
-  copy:
-    src: authorized_keys
-    dest: /home/{{ username }}/.ssh/authorized_keys
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    force: yes
-    mode: 0600
+- name: Add pub key to authorized_keys for git user
+  authorized_key:
+    user: "{{ username }}"
+    state: present
+    key: "{{ ssh_public_key }}"
   become: yes
-  become_user: root
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Create local systemd directory
   file:
