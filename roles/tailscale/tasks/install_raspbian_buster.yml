@@ -1,0 +1,32 @@
+---
+- name: Install required packages
+  package:
+    name: apt-transport-https
+    state: present
+  become: yes
+
+- name: Add Tailscale repo GPG key
+  apt_key:
+    url: https://pkgs.tailscale.com/stable/raspbian/buster.gpg
+    state: present
+  become: yes
+
+- name: Add Tailscale repo
+  get_url:
+    url: https://pkgs.tailscale.com/stable/raspbian/buster.list
+    dest: /etc/apt/sources.list.d/tailscale.list
+    force: no
+  become: yes
+  register: add_tailscale_repo
+
+- name: Refresh package cache
+  apt:
+    update_cache: yes
+  become: yes
+  when: add_tailscale_repo.changed
+
+- name: Install Tailscale
+  package:
+    name: tailscale
+    state: present
+  become: yes

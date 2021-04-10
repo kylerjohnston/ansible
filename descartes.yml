@@ -10,3 +10,4 @@
     - server_common
     - descartes
     - home_network
+    - tailscale

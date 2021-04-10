@@ -1,0 +1,3 @@
+---
+- include_tasks: install_raspbian_buster.yml
+  when: ansible_lsb['id'] == 'Raspbian' and ansible_lsb['codename'] == 'buster'
