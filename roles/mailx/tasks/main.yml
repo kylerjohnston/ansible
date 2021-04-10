@@ -1,0 +1,5 @@
+- name: Install s-nail
+  package:
+    name: mailutils
+    state: present
+  become: yes

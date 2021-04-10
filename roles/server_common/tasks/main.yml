@@ -1,7 +1,7 @@
 ---
 - name: Install motd
   copy:
-    src: motd/{{ hostname }}.motd
+    src: motd/{{ hostname | default(inventory_hostname) }}.motd
     dest: /etc/motd
     mode: 0644
     owner: root

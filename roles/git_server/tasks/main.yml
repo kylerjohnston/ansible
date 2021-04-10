@@ -12,6 +12,15 @@
   become: yes
   ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Add additional pub keys to authorized_keys for git user
+  authorized_key:
+    user: git
+    state: present
+    key: "{{ item }}"
+  become: yes
+  ignore_errors: "{{ ansible_check_mode }}"
+  with_items: "{{ authorized_keys }}"
+
 - name: Ensure repository directories
   file:
     path: /srv/git/{{ item }}.git

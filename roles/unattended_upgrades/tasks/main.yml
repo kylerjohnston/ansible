@@ -1,0 +1,13 @@
+- name: Install unattended-upgrades
+  package:
+    name:
+      - unattended-upgrades
+    state: present
+  become: yes
+
+- name: Ensure unattended-upgrades running & enabled
+  systemd:
+    name: unattended-upgrades
+    state: started
+    enabled: yes
+  become: yes

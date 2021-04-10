@@ -8,6 +8,13 @@
   become: yes
   become_user: root
 
+- name: Set nopasswd sudo
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^%sudo'
+    line: '%sudo  ALL=NOPASSWD: ALL'
+  become: yes
+
 - name: Create {{ username }} user
   user:
     name: "{{ username }}"

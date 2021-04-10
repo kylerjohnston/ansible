@@ -11,3 +11,4 @@
     - descartes
     - home_network
     - tailscale
+    - unattended_upgrades

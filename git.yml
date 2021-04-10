@@ -2,6 +2,8 @@
   roles:
     - common
     - git_server
+    - unattended_upgrades
+    - server_common
   vars:
     repos:
       - notes
