@@ -4,6 +4,7 @@
     - username: krj
     - hostname: descartes.local.muumu.us
     - profile: home_server
+    - tailscale_exit_node: yes
     - cpu_arch: armv7
   roles:
     - common

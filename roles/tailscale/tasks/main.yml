@@ -1,3 +1,12 @@
 ---
 - include_tasks: install_raspbian_buster.yml
   when: ansible_lsb['id'] == 'Raspbian' and ansible_lsb['codename'] == 'buster'
+
+- name: Enable ipv4 forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    state: present
+    sysctl_set: yes
+  become: yes
+  when: "{{ tailscale_exit_node }}"
