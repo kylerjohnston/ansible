@@ -11,12 +11,12 @@
   roles:
     - aws
     - common
+    - git_notes
     - gnucash
     - graphical
     - jekyll
     - laptop
     - latex
-    - postfix
     - printing
     - ruby
     - steam

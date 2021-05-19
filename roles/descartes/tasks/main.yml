@@ -27,28 +27,3 @@
     mode: 0755
   become: yes
   become_user: root
-
-- name: Ensure /home/{{ username }}/scripts
-  file:
-    path: /home/{{ username }}/scripts
-    state: directory
-    owner: "{{ username }}"
-    group: "{{ username }}"
-  become: yes
-
-- name: Copy git_notes.sh
-  copy:
-    src: git_notes.sh
-    dest: /home/{{ username }}/scripts/git_notes.sh
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0775
-  become: yes
-
-- name: Enable git_notes.sh cron
-  cron:
-    name: git_notes.sh
-    minute: "*/10"
-    job: /home/{{ username }}/scripts/git_notes.sh
-    user: "{{ username }}"
-  become: yes
