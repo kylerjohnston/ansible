@@ -1,21 +1,6 @@
 ---
-- name: Download Terraform
-  get_url:
-    url: https://releases.hashicorp.com/terraform/0.12.18/terraform_{{ terraform_version }}_linux_amd64.zip
-    dest: /tmp/terraform.zip
-    checksum: "{{ terraform_checksum }}"
-
-- name: Extract Terraform
-  unarchive:
-    src: /tmp/terraform.zip
-    dest: /usr/local/bin/
-    remote_src: yes
-    owner: root
-    group: root
+- name: Install tfswitch
+  snap:
+    name: tfswitch
+    state: present
   become: yes
-  become_user: root
-
-- name: Remove terraform archive
-  file:
-    path: /tmp/terraform.zip
-    state: absent
