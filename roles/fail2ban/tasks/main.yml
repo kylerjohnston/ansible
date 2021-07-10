@@ -1,0 +1,13 @@
+- name: Install fail2ban
+  package:
+    name:
+      - fail2ban
+    state: present
+  become: yes
+
+- name: Ensure fail2ban running & enabled
+  systemd:
+    name: fail2ban
+    state: started
+    enabled: yes
+  become: yes
