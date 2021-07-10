@@ -4,6 +4,7 @@
     - git_server
     - unattended_upgrades
     - server_common
+    - fail2ban
   vars:
     repos:
       - notes
